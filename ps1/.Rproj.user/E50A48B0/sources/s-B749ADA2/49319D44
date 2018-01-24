@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1516667515117.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "49319D44",
+    "lastKnownWriteTime" : 1516668534,
+    "last_content_update" : 1516668534571,
+    "path" : "~/R/252L/ps1/ps1-like.R",
+    "project_path" : "ps1-like.R",
+    "properties" : {
+        "cursorPosition" : "10,34",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

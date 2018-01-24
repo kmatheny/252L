@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1516222932785.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2753090037",
+    "id" : "DC018E69",
+    "lastKnownWriteTime" : 1516666059,
+    "last_content_update" : 1516666059286,
+    "path" : "~/R/252L/ps1/ps1-logreg.R",
+    "project_path" : "ps1-logreg.R",
+    "properties" : {
+        "cursorPosition" : "15,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1516668652328.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3F231C04",
+    "lastKnownWriteTime" : 1516670249,
+    "last_content_update" : 1516670249899,
+    "path" : "~/R/252L/ps1/item_analysis.R",
+    "project_path" : "item_analysis.R",
+    "properties" : {
+        "cursorPosition" : "6,42",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
