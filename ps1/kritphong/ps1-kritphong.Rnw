@@ -15,20 +15,28 @@
 % --------------------------------------------------------------
 
 \title{Problem Set 1}
-\author{K. Tuggle Matheny, C. Townley Flores, K. Kanopka, \\ P. Biernacki, K. Mongkhonvanit, F. Recch \\ EDUC 252L}
+\author{Kritphong Monghonvanit}
 
 \maketitle
 
 \section{Bernoulli Random Variables}
 
 \begin{enumerate}
-		\item The correlation matrix has 1's along the diagonal, which makes sense because:
-			\[ \sigma(x,x)=1 \]
-			The matrix is also symmetric about the diagonal, which makes sense because:
-			\[ \sigma(x,y) = \sigma(y,x) \]
-			The correlations are also relatively small, which makes sense because the data is generated randomly.
+	\item
+	The correlation matrix has 1's along the diagonal, which makes sense
+	because:
 
-			\begin{verbatim}
+	\[ \sigma(x,x)=1 \]
+
+	The matrix is also symmetric about the diagonal, which makes sense
+	because:
+
+	\[ \sigma(x,y) = \sigma(y,x) \]
+
+	The correlations are also relatively small, which makes sense because
+	the data is generated randomly.
+
+	\begin{verbatim}
 	      [,1]         [,2]         [,3]          [,4]         [,5]
  [1,]  1.000000000  0.008410789 -0.009896948 -0.3032770731  0.094629567
  [2,]  0.008410789  1.000000000  0.089886562 -0.0669602615 -0.057570773
@@ -50,18 +58,35 @@
  [7,]  0.087597723  1.000000000  0.02350749  0.0090628774  0.05755282
  [8,]  0.099299317  0.023507488  1.00000000  0.0370118105  0.08043217
  [9,] -0.190460811  0.009062877  0.03701181  1.0000000000  0.08500515
-			\end{verbatim}
+	\end{verbatim}
 
-		\item The variance of the row sums is $2.706667$.  Given the context of the following question, this represents variance in total test scores across individuals.
+	\item
+	The variance of the row sums is $2.706667$.  Given the context of the
+	following question, this represents variance in total test scores across
+	individuals.
 
-		\item Probably not, because the correlations are so small.  One might also expect a test to have "easy" and "hard" questions, which this randomly constructed matrix does not indicate when looking at the column sums.
+	\item
+	Probably not, because the correlations are so small.  One might also
+	expect a test to have "easy" and "hard" questions, which this randomly
+	constructed matrix does not indicate when looking at the column sums.
 
-		\item For $x_2$, the matrix still has 1's along the diagonal and is symmetric about the diagonal, but generally speaking the correlations are higher than they were in $x_1$.
+	\item
+	For $x_2$, the matrix still has 1's along the diagonal and is symmetric
+	about the diagonal, but generally speaking the correlations are higher
+	than they were in $x_1$.
 
-		\item The variance of the row sums is $5.111111$.  The variation in row sums here is higher.  If you look at histograms of the row sums, the data is also somewhat more uniformly distributed in $x_2$ than in $x_1$, so it makes sense that the variance would be higher in this situation.
 
-		\item Considering the column sums, it's clear that there are items that are more difficult (20 correct responses) and less difficult (69 or 73 correct responses), so in this sense, it is more realistic.
-	\end{enumerate}
+	\item
+	The variance of the row sums is $5.111111$.  The variation in row sums
+	here is higher.  If you look at histograms of the row sums, the data is
+	also somewhat more uniformly distributed in $x_2$ than in $x_1$, so it
+	makes sense that the variance would be higher in this situation.
+
+	\item
+	Considering the column sums, it's clear that there are items that are
+	more difficult (20 correct responses) and less difficult (69 or 73
+	correct responses), so in this sense, it is more realistic.
+\end{enumerate}
 
 \includegraphics[scale=0.5]{hist_x1.pdf}
 \includegraphics[scale=0.5]{hist_x2.pdf}
@@ -70,63 +95,105 @@ Looking at histograms of row sums in $x_1$ and $x_2$, $x_2$ is less clearly norm
 
 \section{Logistic Regression}
 
-	\begin{enumerate}
-		\item The association between $x$ and $y_2$ is stronger than the association between x and $y_1$. This is because the AIC, null deviance and residual deviance are lower for $y_2$. In addition, when looking at plots, there is less overlap between the top and bottom sections in the plots of $y_2$ than in $y_1$. In $y_2$, the logistic curve has a steeper transition from minimum value to maximum value.
+\begin{enumerate}
+	\item
+	The association between $x$ and $y_2$ is stronger than the association
+	between x and $y_1$. This is because the AIC, null deviance and residual
+	deviance are lower for $y_2$. In addition, when looking at plots, there
+	is less overlap between the top and bottom sections in the plots of
+	$y_2$ than in $y_1$. In $y_2$, the logistic curve has a steeper
+	transition from minimum value to maximum value.
 
-		\item The regression coefficients, $\beta_0$ and $\beta_1$, are related to the shape of the logistic fit. Specifically, $\beta_0$ is related to the intercept. $\beta_1$ is a measure of test item discrimination. $\beta_1$ is related to the slope at the point of inflection, so a higher slope would indicate higher levels of discrimination. $\beta_0$ is related to difficulty, with a lower $\beta_0$ indicating an easier test item. $\beta_0$ is the odds of getting an answer correct when $x = 0$.
+	\item
+	The regression coefficients, $\beta_0$ and $\beta_1$, are related to the
+	shape of the logistic fit. Specifically, $\beta_0$ is related to the
+	intercept. $\beta_1$ is a measure of test item discrimination. $\beta_1$
+	is related to the slope at the point of inflection, so a higher slope
+	would indicate higher levels of discrimination. $\beta_0$ is related to
+	difficulty, with a lower $\beta_0$ indicating an easier test item.
+	$\beta_0$ is the odds of getting an answer correct when $x = 0$.
 
-        $$P(x=0) = \frac{e^{\beta_0}}{(1+e^{\beta_0})}$$
+	$$P(x=0) = \frac{e^{\beta_0}}{(1+e^{\beta_0})}$$
 
-\input{table_glm_models.tex}
+	\input{table_glm_models.tex}
 
-\item Do m1 and m2 show equivalent model fit? Can you notice anything peculiar about either y1 or y2 (in terms of their association with x)?
-
-	\end{enumerate}
+	\item
+	Do m1 and m2 show equivalent model fit? Can you notice anything peculiar
+	about either y1 or y2 (in terms of their association with x)?
+\end{enumerate}
 
 \section{Likelihood}
 
 \begin{enumerate}
 	\item
-    Depending on the randomly generated data, the position on the $x$-axis of the maxima of the likelihood graph changes slightly, but it is always in the neighborhood of $x=0$.
+	Depending on the randomly generated data, the position on the $x$-axis
+	of the maxima of the likelihood graph changes slightly, but it is always
+	in the neighborhood of $x=0$.
 
-    \includegraphics[width=0.5\textwidth]{ps1-like-plot}
+	\includegraphics[width=0.5\textwidth]{ps1-like-plot}
 
-    \item
-    As the sample size increases, the mean approaches zero and the variance approaches one.
+	\item
+	As the sample size increases, the mean approaches zero and the variance
+	approaches one.
 
-    \begin{tabular}{|l|l|l|}
-	\hline
-	Sample Size & Mean & Variance \\
-	\hline
-	10 & 0.2335989 & 1.3643526 \\
-	100 & 0.1675501 & 0.9539125 \\
-	1000 & -0.02798667 & 0.95039213 \\
-	10000 & 0.0014444 & 1.0368603 \\
-	\hline
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Sample Size & Mean & Variance \\
+		\hline
+		10 & 0.2335989 & 1.3643526 \\
+		100 & 0.1675501 & 0.9539125 \\
+		1000 & -0.02798667 & 0.95039213 \\
+		10000 & 0.0014444 & 1.0368603 \\
+		\hline
 	\end{tabular}
-%***CARRIE'S ANSWERS 1.
-\item I notice what appears to be a normal distribution with points densely aligned at y=0 and more sparsely distributed around the mean. The mean is between -0.5 and 0, and the standard deviation is small. The y-axis is labeled in scientific notation, indicating that the numbers are extremely small.
 
-\item
-The original estimates for the mean and variance were -.1686 and .84216, respectively. As the sample size decreased, the estimates for variance became less accurate: pars == (-0.15, 1.519). As the sample size increased, the estimates for mean and variance converged on the standard parameters of 0 and 1, respectively. At n=10000, pars == (0.00213, 0.9787).
+	\item
+	I notice what appears to be a normal distribution with points densely
+	aligned at y=0 and more sparsely distributed around the mean. The mean
+	is between -0.5 and 0, and the standard deviation is small. The y-axis
+	is labeled in scientific notation, indicating that the numbers are
+	extremely small.
+
+	\item
+	The original estimates for the mean and variance were -.1686 and .84216,
+	respectively. As the sample size decreased, the estimates for variance
+	became less accurate: pars == (-0.15, 1.519). As the sample size
+	increased, the estimates for mean and variance converged on the standard
+	parameters of 0 and 1, respectively. At n=10000, pars == (0.00213,
+	0.9787).
 \end{enumerate}
-
 
 \section{Item Quality}
 
 \begin{enumerate}
-\item In my response, I will refer to item-total correlations as predictability and p-values as difficulty. The items in the first dataset had a wide range of predictability and difficulty. The most predictable items, that is, the items with the highest item-total correlations, were in the mid-high range of difficulty, but not all of the items in this range were very predictable. The range of predictability was near 0 to 0.6. In general, the lowest and highest difficulty items were not very predictable of the overall measure.
+	\item
+	In my response, I will refer to item-total correlations as
+	predictability and p-values as difficulty. The items in the first
+	dataset had a wide range of predictability and difficulty. The most
+	predictable items, that is, the items with the highest item-total
+	correlations, were in the mid-high range of difficulty, but not all of
+	the items in this range were very predictable. The range of
+	predictability was near 0 to 0.6. In general, the lowest and highest
+	difficulty items were not very predictable of the overall measure.
 
-When comparing the two datasets, the second set of questions had higher predictability overall and throughout a wider range of difficulties of questions. The ranges of difficulty of the questions were about the same between the sets, but more of the questions in the second set had many more items with predictability between .35 and .5. In both cases, the easiest and most difficult questions were the least predictive.
-%END CARRIE'S ANSWERS***
+	When comparing the two datasets, the second set of questions had higher
+	predictability overall and throughout a wider range of difficulties of
+	questions. The ranges of difficulty of the questions were about the same
+	between the sets, but more of the questions in the second set had many
+	more items with predictability between .35 and .5. In both cases, the
+	easiest and most difficult questions were the least predictive.
 \end{enumerate}
-
 
 \section{Buffon's Needle Problem}
 
-To test the Buffon's Needle Problem we simulated a large number of needles and defined the length of the needles and the spaces to be equal (2 in both cases).
+To test the Buffon's Needle Problem we simulated a large number of needles and
+defined the length of the needles and the spaces to be equal (2 in both cases).
 
-Then, we randomized the position each needle could land by simulating the orientation of one of its points in a circle.  Considering that the relationship of the length of the needle and the space it takes once landed depends on the angle the needle lands, we simulated the positions of each needle and tested whether is hit a line.
+Then, we randomized the position each needle could land by simulating the
+orientation of one of its points in a circle.  Considering that the relationship
+of the length of the needle and the space it takes once landed depends on the
+angle the needle lands, we simulated the positions of each needle and tested
+whether is hit a line.
 
 Our conclusion is that in a scenario that \texttt{l} and \texttt{d} are the same
 length, the chance of a needle hit a line is approximately 0.63.
