@@ -79,9 +79,10 @@ cor(x2)
 	situation.
 
 	\item
-	Considering the column sums, it's clear that there are items that are
-	more difficult (20 correct responses) and less difficult (69 or 73
-	correct responses), so in this sense, it is more realistic.
+	The histogram of column sums for $x_2$ shows that the distribution of items
+	for which 40 to 50 people were answer correctly is unusually high. The
+	histogram for $x_2$ shows a much more even distribution, which more
+	closely resembles a real test.
 
 <<echo=FALSE>>=
 par(mfrow=c(2,2))
