@@ -15,7 +15,7 @@
 % --------------------------------------------------------------
 
 \title{Problem Set 1}
-\author{Kritphong Monghonvanit}
+\author{K. Tuggle Matheny, C. Townley Flores, K. Kanopka, \\ P. Biernacki, K. Mongkhonvanit, F. Recch \\ EDUC 252L}
 
 \maketitle
 
