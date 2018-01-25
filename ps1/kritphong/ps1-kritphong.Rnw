@@ -117,8 +117,7 @@ hist(colSums(x2))
 	\input{table_glm_models.tex}
 
 	\item
-	Do m1 and m2 show equivalent model fit? Can you notice anything peculiar
-	about either y1 or y2 (in terms of their association with x)?
+	Based on the AIC, $y_1$ fits the model significantly more than $y_2$.
 \end{enumerate}
 
 \section{Likelihood}
