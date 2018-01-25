@@ -82,7 +82,6 @@ cor(x2)
 	Considering the column sums, it's clear that there are items that are
 	more difficult (20 correct responses) and less difficult (69 or 73
 	correct responses), so in this sense, it is more realistic.
-\end{enumerate}
 
 <<echo=FALSE>>=
 par(mfrow=c(2,2))
@@ -92,14 +91,7 @@ hist(colSums(x1))
 hist(colSums(x2))
 @
 
-Looking at histograms of row sums in $x_1$ and $x_2$, $x_2$ is less clearly
-normally distributed, meaning that there are respondents at lower ability
-levels, but a sharper drop off after 7 (and 8) correct.  More than anything, the
-difference in the variance between the column sums (61.7 in $x_1$ and 242.7 in
-$x_2$) implies that all the items in $x_1$ would have been of similar
-difficulty, whereas the items in $x_2$ are of varying difficulty.  In practice,
-it's hard to write items that are of similar difficulty and result in
-respondents of similar scores have wildly different response profiles.
+\end{enumerate}
 
 \section{Logistic Regression}
 
