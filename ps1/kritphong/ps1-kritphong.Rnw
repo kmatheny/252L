@@ -97,6 +97,12 @@ hist(colSums(x2))
 \section{Logistic Regression}
 
 \begin{enumerate}
+<<>>=
+load("ps1-logreg.Rdata")
+glm(y1~x,df,family="binomial")
+glm(y2~x,df,family="binomial")
+@
+
 	\item
 	The association between $x$ and $y_2$ is stronger than the association
 	between x and $y_1$. This is because the AIC, null deviance and residual
@@ -113,8 +119,6 @@ hist(colSums(x2))
 	would indicate higher levels of discrimination. $\beta_0$ is related to
 	difficulty, with a lower $\beta_0$ indicating an easier test item.
 	$\beta_0$ is the odds of getting an answer correct when $x = 0$.
-
-	\input{table_glm_models.tex}
 
 	\item
 	Based on the AIC, $y_1$ fits the model significantly more than $y_2$.
