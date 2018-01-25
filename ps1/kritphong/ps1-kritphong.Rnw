@@ -130,13 +130,45 @@ m2
 
 \section{Likelihood}
 
+<<echo=FALSE>>=
+likelihood<-function(pars,x) {
+    tmp<-exp(-(x-pars[1])^2/(2*pars[2]))
+    tmp/sqrt(2*pars[2]*pi)
+}
+ll<-function(pars,x) {
+    likelihood<-function(pars,x) {
+        tmp<-exp(-(x-pars[1])^2/(2*pars[2]))
+        tmp/sqrt(2*pars[2]*pi)
+    }
+    like<-rep(NA,length(x))
+    for (i in 1:length(x)) {
+        like[i]<-likelihood(pars,x[i])
+    }
+    -1*sum(log(like))
+}
+
+par(mfrow=c(3,3))
+
+for (i in 1:9) {
+x<-rnorm(100)
+out<-list()
+for (m in seq(-1,1,length.out=100)) {
+    like<-rep(NA,length(x))
+    for (i in 1:length(x)) {
+        like[i]<-likelihood(c(m,1),x[i])
+    }
+    c(c(m,prod(like)))->out[[as.character(m) ]]
+}
+plot(do.call("rbind",out),type="b")
+optim(par=c(-2,2),ll,x=x)$par
+}
+@
+
 \begin{enumerate}
 	\item
 	Depending on the randomly generated data, the position on the $x$-axis
 	of the maxima of the likelihood graph changes slightly, but it is always
 	in the neighborhood of $x=0$.
-
-	\includegraphics[width=0.5\textwidth]{ps1-like-plot}
 
 	\item
 	As the sample size increases, the mean approaches zero and the variance
