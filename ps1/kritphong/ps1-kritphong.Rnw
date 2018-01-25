@@ -61,7 +61,6 @@
 		\item The variance of the row sums is $5.111111$.  The variation in row sums here is higher.  If you look at histograms of the row sums, the data is also somewhat more uniformly distributed in $x_2$ than in $x_1$, so it makes sense that the variance would be higher in this situation.
 
 		\item Considering the column sums, it's clear that there are items that are more difficult (20 correct responses) and less difficult (69 or 73 correct responses), so in this sense, it is more realistic.
-
 	\end{enumerate}
 
 \includegraphics[scale=0.5]{hist_x1.pdf}
@@ -129,9 +128,10 @@ To test the Buffon's Needle Problem we simulated a large number of needles and d
 
 Then, we randomized the position each needle could land by simulating the orientation of one of its points in a circle.  Considering that the relationship of the length of the needle and the space it takes once landed depends on the angle the needle lands, we simulated the positions of each needle and tested whether is hit a line.
 
-Our conclusion is that in a scenario that \texttt{l} and \texttt{d} are the same length, the chance of a needle hit a line is equal to 0.63647.
+Our conclusion is that in a scenario that \texttt{l} and \texttt{d} are the same
+length, the chance of a needle hit a line is approximately 0.63.
 
-\begin{Verbatim}
+<<>>=
 n <- 1000000
 d <- 2
 l <- 2
@@ -144,15 +144,6 @@ orientation[,3] <- orientation[,1] + (l * cos(orientation[,2]))
 orientation[,4] <- ifelse(orientation[,3] >= d,1,0)
 
 sum(orientation[,4])/n
-\end{Verbatim}
-
-
-%\section{Item Quality}
-
-
-
-% --------------------------------------------------------------
-%     You don't have to mess with anything below this line.
-% --------------------------------------------------------------
+@
 
 \end{document}
