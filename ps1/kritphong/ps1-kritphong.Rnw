@@ -36,51 +36,43 @@
 	The correlations are also relatively small, which makes sense because
 	the data is generated randomly.
 
-	\begin{verbatim}
-	      [,1]         [,2]         [,3]          [,4]         [,5]
- [1,]  1.000000000  0.008410789 -0.009896948 -0.3032770731  0.094629567
- [2,]  0.008410789  1.000000000  0.089886562 -0.0669602615 -0.057570773
- [3,] -0.009896948  0.089886562  1.000000000  0.0295469723 -0.125809070
- [4,] -0.303277073 -0.066960261  0.029546972  1.0000000000  0.089214650
- [5,]  0.094629567 -0.057570773 -0.125809070  0.0892146505  1.000000000
- [6,]  0.237526763  0.130744090 -0.001602564 -0.0525279507  0.035484609
- [7,]  0.081814407 -0.074443750  0.047043222 -0.0988646639  0.060409150
- [8,]  0.098085811 -0.016333199  0.059259270  0.0455242322 -0.103165975
- [9,] -0.149960697 -0.107907043  0.053719716 -0.0004168548 -0.001638407
-[10,]  0.025551766  0.179665184  0.060860872  0.0365014114 -0.058030861
-	      [,6]         [,7]        [,8]          [,9]       [,10]
- [1,]  0.237526763  0.081814407  0.09808581 -0.1499606967  0.02555177
- [2,]  0.130744090 -0.074443750 -0.01633320 -0.1079070433  0.17966518
- [3,] -0.001602564  0.047043222  0.05925927  0.0537197158  0.06086087
- [4,] -0.052527951 -0.098864664  0.04552423 -0.0004168548  0.03650141
- [5,]  0.035484609  0.060409150 -0.10316597 -0.0016384067 -0.05803086
- [6,]  1.000000000  0.087597723  0.09929932 -0.1904608106 -0.05925927
- [7,]  0.087597723  1.000000000  0.02350749  0.0090628774  0.05755282
- [8,]  0.099299317  0.023507488  1.00000000  0.0370118105  0.08043217
- [9,] -0.190460811  0.009062877  0.03701181  1.0000000000  0.08500515
-	\end{verbatim}
+<<echo=FALSE>>=
+set.seed(12311)
+x1<-matrix(rbinom(1000,1,.5),100,10)
+cor(x1)
+@
 
 	\item
-	The variance of the row sums is $2.706667$.  Given the context of the
+	The variance of the row sums is \Sexpr{var(rowSums(x1))}.  Given the context of the
 	following question, this represents variance in total test scores across
 	individuals.
 
 	\item
-	Probably not, because the correlations are so small.  One might also
-	expect a test to have "easy" and "hard" questions, which this randomly
+	Probably not, because the correlations are so small. One might also
+	expect a test to have easy and hard questions, which this randomly
 	constructed matrix does not indicate when looking at the column sums.
+
+<<echo=FALSE>>=
+set.seed(12311)
+th<-matrix(rnorm(100),100,10,byrow=FALSE)
+diff<-matrix<-matrix(rnorm(10),100,10,byrow=TRUE)
+kern<- exp(th - diff)
+pr<-kern/(1+kern)
+test<-matrix(runif(1000),100,10)
+x2<-ifelse(pr>test,1,0)
+@
 
 	\item
 	For $x_2$, the matrix still has 1's along the diagonal and is symmetric
 	about the diagonal, but generally speaking the correlations are higher
 	than they were in $x_1$.
 
-
 	\item
-	The variance of the row sums is $5.111111$.  The variation in row sums
-	here is higher.  If you look at histograms of the row sums, the data is
-	also somewhat more uniformly distributed in $x_2$ than in $x_1$, so it
-	makes sense that the variance would be higher in this situation.
+	The variance of the row sums is \Sexpr{var(rowSums(x2))}. The variation
+	in row sums here is higher. If you look at histograms of the row sums,
+	the data is also somewhat more uniformly distributed in $x_2$ than in
+	$x_1$, so it makes sense that the variance would be higher in this
+	situation.
 
 	\item
 	Considering the column sums, it's clear that there are items that are
@@ -88,10 +80,22 @@
 	correct responses), so in this sense, it is more realistic.
 \end{enumerate}
 
-\includegraphics[scale=0.5]{hist_x1.pdf}
-\includegraphics[scale=0.5]{hist_x2.pdf}
+<<echo=FALSE>>=
+par(mfrow=c(2,2))
+hist(rowSums(x1))
+hist(rowSums(x2))
+hist(colSums(x1))
+hist(colSums(x2))
+@
 
-Looking at histograms of row sums in $x_1$ and $x_2$, $x_2$ is less clearly normally distributed, meaning that there are respondents at lower ability levels, but a sharper drop off after 7 (and 8) correct.  More than anything, the difference in the variance between the column sums (61.7 in $x_1$ and 242.7 in $x_2$) implies that all the items in $x_1$ would have been of similar difficulty, whereas the items in $x_2$ are of varying difficulty.  In practice, it's hard to write items that are of similar difficulty and result in respondents of similar scores have wildly different response profiles.
+Looking at histograms of row sums in $x_1$ and $x_2$, $x_2$ is less clearly
+normally distributed, meaning that there are respondents at lower ability
+levels, but a sharper drop off after 7 (and 8) correct.  More than anything, the
+difference in the variance between the column sums (61.7 in $x_1$ and 242.7 in
+$x_2$) implies that all the items in $x_1$ would have been of similar
+difficulty, whereas the items in $x_2$ are of varying difficulty.  In practice,
+it's hard to write items that are of similar difficulty and result in
+respondents of similar scores have wildly different response profiles.
 
 \section{Logistic Regression}
 
