@@ -113,8 +113,6 @@ hist(colSums(x2))
 	difficulty, with a lower $\beta_0$ indicating an easier test item.
 	$\beta_0$ is the odds of getting an answer correct when $x = 0$.
 
-	$$P(x=0) = \frac{e^{\beta_0}}{(1+e^{\beta_0})}$$
-
 	\input{table_glm_models.tex}
 
 	\item
