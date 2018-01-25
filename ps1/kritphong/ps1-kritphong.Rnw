@@ -201,7 +201,7 @@ for (i in 1:9) {
 	\end{tabular}
 
 	\item
-	I notice what appears to be a normal distribution with points densely
+	We notice what appears to be a normal distribution with points densely
 	aligned at y=0 and more sparsely distributed around the mean. The mean
 	is between -0.5 and 0, and the standard deviation is small. The y-axis
 	is labeled in scientific notation, indicating that the numbers are
@@ -210,17 +210,16 @@ for (i in 1:9) {
 	\item
 	The original estimates for the mean and variance were -.1686 and .84216,
 	respectively. As the sample size decreased, the estimates for variance
-	became less accurate: pars == (-0.15, 1.519). As the sample size
+	became less accurate: pars=(-0.15, 1.519). As the sample size
 	increased, the estimates for mean and variance converged on the standard
-	parameters of 0 and 1, respectively. At n=10000, pars == (0.00213,
-	0.9787).
+	parameters of 0 and 1, respectively. At n=10000, pars=(0.00213, 0.9787).
 \end{enumerate}
 
 \section{Item Quality}
 
 \begin{enumerate}
 	\item
-	In my response, I will refer to item-total correlations as
+	In my response, we will refer to item-total correlations as
 	predictability and p-values as difficulty. The items in the first
 	dataset had a wide range of predictability and difficulty. The most
 	predictable items, that is, the items with the highest item-total
@@ -241,15 +240,13 @@ for (i in 1:9) {
 
 To test the Buffon's Needle Problem we simulated a large number of needles and
 defined the length of the needles and the spaces to be equal (2 in both cases).
-
 Then, we randomized the position each needle could land by simulating the
 orientation of one of its points in a circle.  Considering that the relationship
 of the length of the needle and the space it takes once landed depends on the
 angle the needle lands, we simulated the positions of each needle and tested
-whether is hit a line.
-
-Our conclusion is that in a scenario that \texttt{l} and \texttt{d} are the same
-length, the chance of a needle hit a line is approximately 0.63.
+whether is hit a line. Our conclusion is that in a scenario that \texttt{l} and
+\texttt{d} are the same length, the chance of a needle hit a line is
+approximately 0.63.
 
 <<>>=
 n <- 1000000
