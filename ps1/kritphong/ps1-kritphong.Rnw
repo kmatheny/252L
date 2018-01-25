@@ -96,13 +96,15 @@ hist(colSums(x2))
 
 \section{Logistic Regression}
 
-\begin{enumerate}
-<<>>=
+<<echo=FALSE>>=
 load("ps1-logreg.Rdata")
-glm(y1~x,df,family="binomial")
-glm(y2~x,df,family="binomial")
+glm(y1~x,df,family="binomial")->m1
+glm(y2~x,df,family="binomial")->m2
+m1
+m2
 @
 
+\begin{enumerate}
 	\item
 	The association between $x$ and $y_2$ is stronger than the association
 	between x and $y_1$. This is because the AIC, null deviance and residual
@@ -121,7 +123,9 @@ glm(y2~x,df,family="binomial")
 	$\beta_0$ is the odds of getting an answer correct when $x = 0$.
 
 	\item
-	Based on the AIC, $y_1$ fits the model significantly more than $y_2$.
+	The AIC for $y_1$ is \Sexpr{m1['aic']} which is significantly higher
+	than $y_2$'s AIC of \Sexpr{m2['aic']}. This suggests that $y_1$ fits the
+	model better than $y_2$.
 \end{enumerate}
 
 \section{Likelihood}
