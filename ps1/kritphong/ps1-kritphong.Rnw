@@ -67,6 +67,10 @@ x2<-ifelse(pr>test,1,0)
 	about the diagonal, but generally speaking the correlations are higher
 	than they were in $x_1$.
 
+<<echo=FALSE>>=
+cor(x2)
+@
+
 	\item
 	The variance of the row sums is \Sexpr{var(rowSums(x2))}. The variation
 	in row sums here is higher. If you look at histograms of the row sums,
