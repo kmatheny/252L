@@ -1,0 +1,266 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{lineno}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+
+\linenumbers
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\title{Problem Set 1}
+\author{K. Tuggle Matheny, C. Townley Flores, K. Kanopka, \\ P. Biernacki, K. Mongkhonvanit, F. Recch \\ EDUC 252L}
+
+\maketitle
+
+\section{Bernoulli Random Variables}
+
+\begin{enumerate}
+	\item
+	The correlation matrix has 1's along the diagonal, which makes sense
+	because:
+
+	\[ \sigma(x,x)=1 \]
+
+	The matrix is also symmetric about the diagonal, which makes sense
+	because:
+
+	\[ \sigma(x,y) = \sigma(y,x) \]
+
+	The correlations are also relatively small, which makes sense because
+	the data is generated randomly.
+
+<<echo=FALSE>>=
+set.seed(12311)
+x1<-matrix(rbinom(1000,1,.5),100,10)
+cor(x1)
+@
+
+	\item
+	The variance of the row sums is \Sexpr{var(rowSums(x1))}.  Given the context of the
+	following question, this represents variance in total test scores across
+	individuals.
+
+	\item
+	Probably not, because the correlations are so small. One might also
+	expect a test to have easy and hard questions, which this randomly
+	constructed matrix does not indicate when looking at the column sums.
+
+<<echo=FALSE>>=
+set.seed(12311)
+th<-matrix(rnorm(100),100,10,byrow=FALSE)
+diff<-matrix<-matrix(rnorm(10),100,10,byrow=TRUE)
+kern<- exp(th - diff)
+pr<-kern/(1+kern)
+test<-matrix(runif(1000),100,10)
+x2<-ifelse(pr>test,1,0)
+@
+
+	\item
+	For $x_2$, the matrix still has 1's along the diagonal and is symmetric
+	about the diagonal, but generally speaking the correlations are higher
+	than they were in $x_1$.
+
+<<echo=FALSE>>=
+cor(x2)
+@
+
+	\item
+	The variance of the row sums is \Sexpr{var(rowSums(x2))}. The variation
+	in row sums here is higher. If you look at histograms of the row sums,
+	the data is also somewhat more uniformly distributed in $x_2$ than in
+	$x_1$, so it makes sense that the variance would be higher in this
+	situation.
+
+	\item
+	The histogram of column sums for $x_2$ shows that the distribution of items
+	for which 40 to 50 people were answer correctly is unusually high. The
+	histogram for $x_2$ shows a much more even distribution, which more
+	closely resembles a real test.
+
+<<echo=FALSE>>=
+par(mfrow=c(2,2))
+hist(rowSums(x1))
+hist(rowSums(x2))
+hist(colSums(x1))
+hist(colSums(x2))
+@
+
+\end{enumerate}
+
+\section{Logistic Regression}
+
+<<echo=FALSE>>=
+load("ps1-logreg.Rdata")
+glm(y1~x,df,family="binomial")->m1
+glm(y2~x,df,family="binomial")->m2
+m1
+m2
+@
+
+\begin{enumerate}
+	\item
+	The association between $x$ and $y_2$ is stronger than the association
+	between x and $y_1$. This is because the AIC, null deviance and residual
+	deviance are lower for $y_2$. In addition, when looking at plots, there
+	is less overlap between the top and bottom sections in the plots of
+	$y_2$ than in $y_1$. In $y_2$, the logistic curve has a steeper
+	transition from minimum value to maximum value.
+
+	\item
+	The regression coefficients, $\beta_0$ and $\beta_1$, are related to the
+	shape of the logistic fit. Specifically, $\beta_0$ is related to the
+	intercept. $\beta_1$ is a measure of test item discrimination. $\beta_1$
+	is related to the slope at the point of inflection, so a higher slope
+	would indicate higher levels of discrimination. $\beta_0$ is related to
+	difficulty, with a lower $\beta_0$ indicating an easier test item.
+	$\beta_0$ is the odds of getting an answer correct when $x = 0$.
+
+	\item
+	The AIC for $y_1$ is \Sexpr{m1['aic']} which is significantly higher
+	than $y_2$'s AIC of \Sexpr{m2['aic']}. This suggests that $y_1$ fits the
+	model better than $y_2$.
+\end{enumerate}
+
+\section{Likelihood}
+
+<<echo=FALSE>>=
+likelihood<-function(pars,x) {
+    tmp<-exp(-(x-pars[1])^2/(2*pars[2]))
+    tmp/sqrt(2*pars[2]*pi)
+}
+ll<-function(pars,x) {
+    likelihood<-function(pars,x) {
+        tmp<-exp(-(x-pars[1])^2/(2*pars[2]))
+        tmp/sqrt(2*pars[2]*pi)
+    }
+    like<-rep(NA,length(x))
+    for (i in 1:length(x)) {
+        like[i]<-likelihood(pars,x[i])
+    }
+    -1*sum(log(like))
+}
+
+likeRun <- function(size,showPlot=FALSE) {
+	x<-rnorm(size)
+	out<-list()
+	for (m in seq(-1,1,length.out=100)) {
+	    like<-rep(NA,length(x))
+	    for (i in 1:length(x)) {
+		like[i]<-likelihood(c(m,1),x[i])
+	    }
+	    c(c(m,prod(like)))->out[[as.character(m) ]]
+	}
+	if (showPlot) {
+		plot(do.call("rbind",out),type="b")
+	}
+	optim(par=c(-2,2),ll,x=x)$par
+}
+par(mfrow=c(3,3))
+for (i in 1:9) {
+	likeRun(100,TRUE)
+}
+@
+
+\begin{enumerate}
+	\item
+	Depending on the randomly generated data, the position on the $x$-axis
+	of the maxima of the likelihood graph changes slightly, but it is always
+	in the neighborhood of $x=0$.
+
+	\item
+	As the sample size increases, the mean approaches zero and the variance
+	approaches one.
+
+<<echo=FALSE>>=
+	likeTrials <- matrix(,ncol=5,nrow=5)
+	likeTrials[,1] <- c(50,100,1000,5000,10000)
+	for (i in 1:length(likeTrials[,1])) {
+		likeTrials[i,2:3] <- likeRun(likeTrials[i,1],FALSE)
+		likeTrials[i,4] <- abs(likeTrials[i,2])
+		likeTrials[i,5] <- abs(likeTrials[i,3]-1)
+	}
+@
+
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline
+		Sample Size & Mean & Variance & ABS(Mean) & ABS(Variance-1) \\
+		\hline
+		\Sexpr{likeTrials[1,1]} & \Sexpr{likeTrials[1,2]} & \Sexpr{likeTrials[1,3]}  & \Sexpr{likeTrials[1,4]} & \Sexpr{likeTrials[1,5]} \\
+		\Sexpr{likeTrials[2,1]} & \Sexpr{likeTrials[2,2]} & \Sexpr{likeTrials[2,3]}  & \Sexpr{likeTrials[2,4]} & \Sexpr{likeTrials[2,5]} \\
+		\Sexpr{likeTrials[3,1]} & \Sexpr{likeTrials[3,2]} & \Sexpr{likeTrials[3,3]}  & \Sexpr{likeTrials[3,4]} & \Sexpr{likeTrials[3,5]} \\
+		\Sexpr{likeTrials[4,1]} & \Sexpr{likeTrials[4,2]} & \Sexpr{likeTrials[4,3]}  & \Sexpr{likeTrials[4,4]} & \Sexpr{likeTrials[4,5]} \\
+		\Sexpr{likeTrials[5,1]} & \Sexpr{likeTrials[5,2]} & \Sexpr{likeTrials[5,3]}  & \Sexpr{likeTrials[5,4]} & \Sexpr{likeTrials[5,5]} \\
+		\hline
+	\end{tabular}
+
+	\item
+	We notice what appears to be a normal distribution with points densely
+	aligned at y=0 and more sparsely distributed around the mean. The mean
+	is between -0.5 and 0, and the standard deviation is small. The y-axis
+	is labeled in scientific notation, indicating that the numbers are
+	extremely small.
+
+	\item
+	The original estimates for the mean and variance were -.1686 and .84216,
+	respectively. As the sample size decreased, the estimates for variance
+	became less accurate: pars=(-0.15, 1.519). As the sample size
+	increased, the estimates for mean and variance converged on the standard
+	parameters of 0 and 1, respectively. At n=10000, pars=(0.00213, 0.9787).
+\end{enumerate}
+
+\section{Item Quality}
+
+\begin{enumerate}
+	\item
+	In my response, we will refer to item-total correlations as
+	predictability and p-values as difficulty. The items in the first
+	dataset had a wide range of predictability and difficulty. The most
+	predictable items, that is, the items with the highest item-total
+	correlations, were in the mid-high range of difficulty, but not all of
+	the items in this range were very predictable. The range of
+	predictability was near 0 to 0.6. In general, the lowest and highest
+	difficulty items were not very predictable of the overall measure.
+
+	When comparing the two datasets, the second set of questions had higher
+	predictability overall and throughout a wider range of difficulties of
+	questions. The ranges of difficulty of the questions were about the same
+	between the sets, but more of the questions in the second set had many
+	more items with predictability between .35 and .5. In both cases, the
+	easiest and most difficult questions were the least predictive.
+\end{enumerate}
+
+\section{Buffon's Needle Problem}
+
+To test the Buffon's Needle Problem we simulated a large number of needles and
+defined the length of the needles and the spaces to be equal (2 in both cases).
+Then, we randomized the position each needle could land by simulating the
+orientation of one of its points in a circle.  Considering that the relationship
+of the length of the needle and the space it takes once landed depends on the
+angle the needle lands, we simulated the positions of each needle and tested
+whether is hit a line. Our conclusion is that in a scenario that \texttt{l} and
+\texttt{d} are the same length, the chance of a needle hit a line is
+approximately 0.63.
+
+<<>>=
+n <- 1000000
+d <- 2
+l <- 2
+
+orientation <- matrix(NA,n,4)
+
+orientation[,1] <- runif(n, 0, d)
+orientation[,2] <- runif(n, -pi/2, pi/2)
+orientation[,3] <- orientation[,1] + (l * cos(orientation[,2]))
+orientation[,4] <- ifelse(orientation[,3] >= d,1,0)
+
+sum(orientation[,4])/n
+@
+
+\end{document}
