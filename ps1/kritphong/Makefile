@@ -1,8 +1,10 @@
 all: ps1-kritphong.pdf
 
-%.pdf: %.Rnw
-	Rscript -e "library(knitr); knit('$^')" && \
-	pdflatex $(^:.Rnw=.tex)
+%.tex: %.Rnw
+	Rscript -e "library(knitr); knit('$^')"
+
+%.pdf: %.tex
+	pdflatex $^
 
 .PHONY: clean
 
