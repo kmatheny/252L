@@ -46,7 +46,7 @@ library(glmnet)
 
 @
 
-\section{Exploration of collections of bernoulli variables}
+\section{Bernoulli Random Variables}
 
 Q. Compute all the correlations of the columns of this matrix (x1). What do you notice?
 
@@ -59,15 +59,23 @@ cor(x1)
 
 @
 
+The correlation matrix has 1's along the diagonal, which makes sense because: 
+			\[ \sigma(x,x)=1 \]
+The matrix is also symmetric about the diagonal, which makes sense because:
+			\[ \sigma(x,y) = \sigma(y,x) \]  
+The correlations are also relatively small, which makes sense because the data is generated randomly.
+
+
 Q. Compute the row sums. What is the variation in row sums?
 
 <<>>=
 var(rowSums(x1))
 @
 
-Q. If you considered the 1s/0s correct and incorrect responses to test items (where the rows are people and the columns are items), does this seem like it could have come from a realistic scenario?
+The variance of the row sums is $2.706667$.  Given the context of the following question, this represents variance in total test scores across individuals.
 
-Feel free to ignore this bit. I'm going to generate a new set of data. 
+
+Q. If you considered the 1s/0s correct and incorrect responses to test items (where the rows are people and the columns are items), does this seem like it could have come from a realistic scenario?
 
 <<echo=FALSE, warning=FALSE,message=FALSE>>=
 set.seed(12311)
@@ -80,55 +88,91 @@ x2<-ifelse(pr>test,1,0)
 
 @
 
+Probably not, because the correlations are so small.  One might also expect a test to have "easy" and "hard" questions, which this randomly constructed matrix does not indicate when looking at the column sums.
+
+
 Q. Now go back through the above questions and see what you make of this new matrix x2. Specifically, how does it compare to the first matrix x1 in terms of whether it seems like a realistic set of item responses? What characteristics (feel free to explore other features of the data) influence your opinion on this point?
 
 <<>>=
 var(rowSums(x2))
 @
 
-\section{Question 2}
+For $x_2$, the matrix still has 1's along the diagonal and is symmetric about the diagonal, but generally speaking the correlations are higher than they were in $x_1$.
 
-(A) How would you compare the association between y1/y2 \& x? (B) How would you interpret the regression coefficients from (say) m1? (C) Do m1 and m2 show equivalent model fit? Can you notice anything peculiar about either y1 or y2 (in terms of their association with x)?
+The variance of the row sums is $5.111111$.  The variation in row sums here is higher.  If you look at histograms of the row sums, the data is also somewhat more uniformly distributed in $x_2$ than in $x_1$, so it makes sense that the variance would be higher in this situation.
+
+<<echo=FALSE>>=
+par(mfrow=c(2,2),mgp=c(2,1,0),mar=c(3,3,1,1))
+hist(rowSums(x1))
+hist(rowSums(x2))
+hist(colSums(x1))
+hist(colSums(x2))
+@
+
+
+Looking at histograms of row and column sums in $x_1$ and $x_2$, $x_2$ is less clearly normally distributed, meaning that there are respondents at lower ability levels, but a sharper drop off after 7 (and 8) correct.  More than anything, the difference in the variance between the column sums (61.7 in $x_1$ and 242.7 in $x_2$) implies that all the items in $x_1$ would have been of similar difficulty, whereas the items in $x_2$ are of varying difficulty.  If you look at the histogram of column sums, however, you will see that this is blatantly untrue.  The histogram of column sums for $x_2$, specifically, is the most damning piece of evidence in favor of $x_1$ being the "real test."
+
+\pagebreak
+\section{Logistic Regression}
+
+(1) How would you compare the association between y1/y2 \& x? (2) How would you interpret the regression coefficients from (say) m1? (3) Do m1 and m2 show equivalent model fit? Can you notice anything peculiar about either y1 or y2 (in terms of their association with x)?
 
 <<>>=
 
 load("ps1-logreg.Rdata")
 
 m1 <- glm(y1~x,df,family="binomial")
+plot(df$x,df$y1)
+curve(predict(m1,data.frame(x=x),type="resp"),add=TRUE)
+
 m2 <- glm(y2~x,df,family="binomial")
+plot(df$x,df$y2)
+curve(predict(m2,data.frame(x=x),type="resp"),add=TRUE)
 
 @
+
+
+	\begin{enumerate}
+		\item The association between $x$ and $y_2$ is stronger than the association between x and $y_1$. This is because the AIC, null deviance and residual deviance are lower for $y_2$. In addition, when looking at plots, there is less overlap between the top and bottom sections in the plots of $y_2$ than in $y_1$. In $y_2$, the logistic curve has a steeper transition from minimum value to maximum value.
+        
+		\item The regression coefficients, $\beta_0$ and $\beta_1$, are related to the shape of the logistic fit. Specifically, $\beta_0$ is related to the intercept. $\beta_1$ is a measure of test item discrimination. $\beta_1$ is related to the slope at the point of inflection, so a higher slope would indicate higher levels of discrimination. $\beta_0$ is related to difficulty, with a lower $\beta_0$ indicating an easier test item. $\beta_0$ is the odds of getting an answer correct when $x = 0$.
+
+
 <<echo=FALSE, results="asis">>=
 stargazer(m1,m2, header = FALSE)
 @
 
-\section{Likelihood exploration}
 
-Suppose we just observed x, a bunch of random numbers.
-We first want to see what the distribution looks like. We can do this:
+\item From the graphs above, $m_2$ appears to be a better model fit.  One peculiar thing appears to be the enormous level of overlap between the two conditions predicted by $x$ in $y_1$.
 
-<<>>=
+	\end{enumerate}
+
+
+
+
+
+
+
+\pagebreak
+\section{Likelihood Exploration}
+Looks vaguely normalish, no? 
+
+<<echo=FALSE>>=
 x<-rnorm(100)
 hist(x)
 @
 
-Looks vaguely normalish, no? [Of course, you can see that I'm drawing variates from the normal distribution, so this isn't surprising. Pretend you didn't see that part!] So what if we wanted to estimate the mean and var of the normal distribution that may have generated this set of draws.
+Yes, it does.
 
-How do we do this? The key statistical technique is to consider the likelihood.
-Let's start by writing a function that computes the likelihood for "x" in a normal with unknown mean and var (collectively, "pars").
 
 <<>>=
 
-likelihood<-function(pars,x) { #see the first eqn here, http://mathworld.wolfram.com/NormalDistribution.html
+likelihood<-function(pars,x) {
     tmp<-exp(-(x-pars[1])^2/(2*pars[2]))
     tmp/sqrt(2*pars[2]*pi)
 }
 
 @
-
-To completely evaluate this function, we would need to know x and pars. We only know x (this is the problem of estimation in general: what are the values in pars?).
-With known x, we can think of the likelihood as the "probability" of observing the draws x from a normal distribution with parameters pars.
-That is, we are thinking of the likelihood as a function of pars (x is known).
 
 Let's think about what we get if the mean is unknown and the SD=1
 Q. what do you notice? 
@@ -142,15 +186,11 @@ for (m in seq(-1,1,length.out=100)) {
     }
     c(c(m,prod(like)))->out[[as.character(m) ]]
 }
-plot(do.call("rbind",out),type="b") #this is a likelihood surface where we're seeing the likelihood as a function of the unknown mean
-
+plot(do.call("rbind",out),type="b") 
 @
 
+The slice of the likelihood surface shown here has a maximum value at our best estimate of the mean.  It's also worth noting that the values for likelihood are really tiny, which is a good reason to use log-likelihood in computational applications.
 
-From a computational perspective, working with the products of small numbers is very unstable. So we instead work with the sum of the logs.
-Why is this ok? First of all, $log(xy)=log(x) + log(y)$
-Second, log(f(x)) is a monotic transformation of f(x). So if we maximize log(f(x)) funtion, then we've also maximized f(x)
-Below is a function that will do this.
 
 Q. How do our estimates vary in accuracy as a function of the sample size (change 100 to something much bigger and much smaller in the top line)
 
@@ -167,21 +207,99 @@ ll<-function(pars,x) {
     }
     -1*sum(log(like))
 }
-optim(par=c(-2,2),ll,x=x)$par #these are the mean and variance estimates produced by maximum likelihood.
+#these are the mean and variance estimates produced by MLE.
+optim(par=c(-2,2),ll,x=x)$par 
 
 @
 
+    As the sample size increases, the mean approaches zero and the variance approaches one.
+    
+    \begin{tabular}{|l|l|l|}
+	\hline
+	Sample Size & Mean & Variance \\
+	\hline
+	10 & 0.2335989 & 1.3643526 \\
+	100 & 0.1675501 & 0.9539125 \\
+	1000 & -0.02798667 & 0.95039213 \\
+	10000 & 0.0014444 & 1.0368603 \\
+	\hline
+	\end{tabular}
 
+\pagebreak
 \section{Item Quality}
 
 Consider the item statistics (p-values \& item-total correlations) discussed in the Crocker \& Algina text. What do you think? As a point of contrast, consider them vis-a-vis the item statistics generated by this data:
 
-<<>>=
-emp_rash <- read.table("emp-rasch.txt")
-rasch <- read.table("rasch.txt")
+<<results='hide'>>=
+out<-list() 
+
+##CTT item analysis
+##this function will compute CTT item statistics
+item_analysis<-function(resp) { 
+    pv<-colMeans(resp,na.rm=TRUE) 
+    r.xt<-numeric() 
+    rowSums(resp,na.rm=TRUE)->ss 
+    for (i in 1:ncol(resp)) {
+        cor(ss,resp[,i],use='p')->r.xt[i]
+    }
+    #return matrix of the p-values and the item/total correlations
+    cbind(pv,r.xt) 
+}
+
+resp1 <-read.table("emp-rasch.txt",header=FALSE)
+out[[1]]<-item_analysis(resp1) 
+
+resp2 <-read.table("rasch.txt",header=FALSE)
+out[[2]]<-item_analysis(resp2)
+
+par(mfrow=c(2,1),mgp=c(2,1,0),mar=c(3,3,1,1))
+
+plot(out[[1]])
+plot(out[[2]])
+
+par(mfrow=c(2,2),mgp=c(2,1,0),mar=c(3,3,1,1))
+pf<-function(x) {
+    plot(density(x[,1]),xlim=c(0,1),xlab="density, p-values")
+    plot(density(x[,2]),xlim=c(0,1),xlab="density, item-total correlations")
+}
+lapply(out,pf)
 @
 
 
-\section{Buffon's Needle Problem}
+The simulated data set (bottom row of graphs) has a fairly normal distribution of item difficulty, while the empirical set (top row of graphs) essentially only consists of items that are middling difficulty or very easy.  When you look to the discrimination of the items (from the item-total correlation graphs), the simulated data set has a very consistently middling discrimination that is nearly the same for almost all items, while the empirical data set, once again, has a wider range of values, with a small number of more discriminating items and some items that are hardly discriminating at all. 
 
+
+The interpretation, then, is that the empirical data set does not represent a ``good" instrument.  There are not a variety of item difficulties and the items themselves are not discriminating.
+
+\pagebreak
+\section{Buffon's Needle}
+
+<<>>=
+n <- 1000 #number of needles
+d <- 1 #line spacing
+l <- 1 #needle length
+
+#matrix to hold all of the information about the needles
+orient <- matrix(NA,n,4)  
+#generates the position of the lefthand side of the needle
+orient[,1] <- runif(n,0,d)  
+#generates the angular orientation of the needle
+orient[,2] <- runif(n,-pi/2, pi/2) 
+#determines the horizontal span of the needle
+orient[,3] <- orient[,1]+l*cos(orient[,2]) 
+#checks the location of the righthand side of the needle
+orient[,4] <- orient[,3] >= d 
+#determines the probability that a needle crossed a line
+p <- sum(orient[,4])/n        
+p
+@
+
+The approach I took here was based upon the following logic:
+\begin{enumerate}
+  \item This is a 1-dimensional problem.  The only thing that actually matters is the projection of the length of a particular needle onto a line perpendicular to the lines on the surface.
+  \item It's only worth considering two lines, separated by a distance $d$.  
+  \item Each needle lands with its leftmost edge some distance from that line on the left and makes some angle, $\theta$, with the line we are projecting its length onto.
+  \item Since we always reference the leftmost edge of the needle, we only need to consider angles between $-\frac{\pi}{2}$ and $\frac{\pi}{2}$.
+  \item If the distance between the leftmost edge and the line plus the projection of the length of the needle onto the perpendicular line is greater than the separation between the parallel lines, the needle will overlap a line.
+\end{enumerate}
 \end{document}

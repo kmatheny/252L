@@ -35,3 +35,8 @@ rowSums(x2)
 var(rowSums(x2))
 ##Q. If you considered the 1s/0s correct and incorrect responses to test items (where the rows are people and the columns are items), does this seem like it could have come from a realistic scenario?
 ##A.  Considering the column sums, it's clear that there are items that are more difficult (20 correct responses) and less difficult (69 or 73 correct responses), so in this sense, it is somewhat more realistic.
+var(colSums(x1))
+var(colSums(x2))
+
+hist(colSums(x1))
+hist(colSums(x2))
