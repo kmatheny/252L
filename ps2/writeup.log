@@ -1,0 +1,582 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2017.11.3)  28 JAN 2018 21:17
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**writeup.tex
+(./writeup.tex
+LaTeX2e <2017-04-15>
+Babel <3.12> and hyphenation patterns for 84 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2017/06/24 v1.0g Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip43
+\fb@frw=\dimen105
+\fb@frh=\dimen106
+\FrameRule=\dimen107
+\FrameSep=\dimen108
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty
+Package: alltt 1997/06/16 v2.0g defines alltt environment
+)
+(/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+) (./writeup.aux)
+\openout1 = `writeup.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count87
+\scratchdimen=\dimen109
+\scratchbox=\box26
+\nofMPsegments=\count88
+\nofMParguments=\count89
+\everyMPshowfont=\toks15
+\MPscratchCnt=\count90
+\MPscratchDim=\dimen110
+\MPnumerator=\count91
+\makeMPintoPDFobject=\count92
+\everyMPtoPDFconversion=\toks16
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 57.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 57.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 57.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 63.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 63.
+Package color Info: Redefining color shadecolor on input line 79.
+<figure/unnamed-chunk-1-1.pdf, id=1, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-1-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-1-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-1-1.pdf  used on input line 80. o
+n input line 80.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 80
+.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 80--81
+[][] 
+ []
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Package color Info: Redefining color shadecolor on input line 89.
+
+Overfull \hbox (260.48085pt too wide) in paragraph at lines 91--91
+[][]\OT1/cmtt/m/it/10 #########################################################
+##########################################################[][] 
+ []
+
+
+Overfull \hbox (769.72641pt too wide) in paragraph at lines 92--92
+[][]\OT1/cmtt/m/it/10 ##now, we were kind of cheating with the coins. we didn^^
+Mt really impose any structure on the thing and this isn^^Mt really demonstrati
+ng something too weird about ctt, just that coin flips aren^^Mt reliable measur
+es![][] 
+ []
+
+
+Overfull \hbox (108.23218pt too wide) in paragraph at lines 94--94
+[][]\OT1/cmtt/m/it/10 ##let^^Ms give ourselves a stiffer challenge. let^^Ms gen
+erate item response data that has[][] 
+ []
+
+
+Overfull \hbox (113.48213pt too wide) in paragraph at lines 96--96
+[][]\OT1/cmtt/m/it/10 ##B. and yet weird inter-workings such that reliability e
+stimates fall apart completely[][] 
+ []
+
+
+Overfull \hbox (265.7308pt too wide) in paragraph at lines 97--97
+[][]\OT1/cmtt/m/it/10 ##C. [i don^^Mt really emphasize this in the below, but y
+ou can also pick (roughly) the distribution of item p-values][][] 
+ []
+
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 99.
+
+Overfull \hbox (234.23108pt too wide) in paragraph at lines 103--103
+[]                  []\OT1/cmtt/m/n/10 check[][]=[][]FALSE[] []\OT1/cmtt/m/it/1
+0 #this will produce a figure that you can use to check that things are working
+ ok[][] 
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 104
+.
+(/usr/share/R/share/texmf/tex/latex/omscmtt.fd
+File: omscmtt.fd 
+)
+LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 104.
+
+Overfull \hbox (18.98296pt too wide) in paragraph at lines 113--113
+[]    []\OT1/cmtt/m/it/10 ##note that we already know how many items a person g
+ot right (O)[][] 
+ []
+
+
+Overfull \hbox (24.23291pt too wide) in paragraph at lines 114--114
+[]    []\OT1/cmtt/m/it/10 ##ctt doesn^^Mt specify how individual item responses
+ are generated.[][] 
+ []
+
+
+Overfull \hbox (202.73135pt too wide) in paragraph at lines 115--115
+[]    []\OT1/cmtt/m/it/10 ##so we have carte blance in terms of coming up with 
+item responses. here^^Ms how i^^Mm going to do it. [][] 
+ []
+
+
+Overfull \hbox (470.22908pt too wide) in paragraph at lines 122--122
+[]            []\OT1/cmtt/m/n/10 for[] [](j[] []in[] []1[][]:[][]O[i]) \OMS/cms
+y/m/n/10 f[] []\OT1/cmtt/m/it/10 #now for each of the observed correct response
+s (for those who got at least 1 item right) i^^Mll pick an item to mark correct
+[][] 
+ []
+
+
+Overfull \hbox (664.72733pt too wide) in paragraph at lines 125--125
+[]                    []\OT1/cmtt/m/n/10 index[][]<-[][]cut[][]([][]runif[][]([
+][]1[][]),pr.interval,[][]labels[][]=[][]FALSE[][])[] []\OT1/cmtt/m/it/10 #here
+ i pick the item wherein i weight the items by the "pr" argument that is random
+ here but could be pre-specied by the user[][] 
+ []
+
+
+Overfull \hbox (197.4814pt too wide) in paragraph at lines 134--134
+[]    []\OT1/cmtt/m/it/10 ##note that we are getting both the p-values and the 
+true score/observed score relationships right![][] 
+ []
+
+
+Overfull \hbox (90.7462pt too wide) in paragraph at lines 137--137
+[]        []\OT1/cmtt/m/n/10 plot[][](T,[][]rowSums[][](resp),[][]xlab[][]=[][]
+"true score"[][],[][]ylab[][]=[][]"observed scores"[][]);[] []abline[][]([][]0[
+][],[][]1[][])[][] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 138--138
+[]        []\OT1/cmtt/m/n/10 plot[][](pr,[][]colMeans[][](resp),[][]xlab[][]=[]
+[]"pr"[][],[][]ylab[][]=[][]"observed p-values"[][]);[] []abline[][]([][]0[][],
+[][]1[][])[][] 
+ []
+
+
+Overfull \hbox (218.48122pt too wide) in paragraph at lines 140--140
+[]    []\OT1/cmtt/m/n/10 obs.rel[][]<-[][]cor[][](T,O)[][]^[][]2[] []\OT1/cmtt/
+m/it/10 #we can use this to make sure that the true and observed score variance
+s are right.[][] 
+ []
+
+
+Overfull \hbox (501.97874pt too wide) in paragraph at lines 141--141
+[]    []\OT1/cmtt/m/n/10 print[][]([][]c[][](reliability,obs.rel))[] []\OT1/cmt
+t/m/it/10 ##for real time checking, these are the pre-specified reliability and
+ what we get from correlation our true and observed scores[][] 
+ []
+
+
+Overfull \hbox (87.23236pt too wide) in paragraph at lines 146--146
+[][]\OT1/cmtt/m/it/10 ##to illustrate the basic idea here, we^^Mll generate 10 
+sets of item response data.[][] 
+ []
+
+
+Overfull \hbox (18.98296pt too wide) in paragraph at lines 147--147
+[][]\OT1/cmtt/m/it/10 ##for each iteration, we^^Mll use the same parameters, th
+ese are below.[][] 
+ []
+
+
+Overfull \hbox (822.22595pt too wide) in paragraph at lines 154--154
+[]    []\OT1/cmtt/m/n/10 alph[[i]][][]<-[][]sim_ctt[][]([][]N.items[][]=N.items
+,[][]N.ppl[][]=N.ppl,[][]s2.true[][]=s2.true,[][]s2.error[][]=s2.error,[][]chec
+k[][]=[][]TRUE[][])[] []\OT1/cmtt/m/it/10 #note, the check option is goign to p
+roduce a figure that allows us to check the marginals to make sure things are l
+ooking ok[][] 
+ []
+
+[2 <./figure/unnamed-chunk-1-1.pdf>]
+Underfull \vbox (badness 10000) detected at line 157
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 157
+ []
+
+[3]
+<figure/unnamed-chunk-2-1.pdf, id=30, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-2-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-2-1.pdf  used on input line 158. 
+on input line 158.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 15
+8.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 158--159
+[][] 
+ []
+
+<figure/unnamed-chunk-2-2.pdf, id=31, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-2-2.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-2.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-2-2.pdf  used on input line 163. 
+on input line 163.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 16
+3.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 163--164
+[][] 
+ []
+
+[4 <./figure/unnamed-chunk-2-1.pdf>]
+<figure/unnamed-chunk-2-3.pdf, id=40, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-2-3.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-3.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-2-3.pdf  used on input line 168. 
+on input line 168.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 16
+8.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 168--169
+[][] 
+ []
+
+[5 <./figure/unnamed-chunk-2-2.pdf>]
+<figure/unnamed-chunk-2-4.pdf, id=49, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-2-4.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-4.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-2-4.pdf  used on input line 173. 
+on input line 173.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 17
+3.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 173--174
+[][] 
+ []
+
+[6 <./figure/unnamed-chunk-2-3.pdf>]
+<figure/unnamed-chunk-2-5.pdf, id=58, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-2-5.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-5.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-2-5.pdf  used on input line 178. 
+on input line 178.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 17
+8.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 178--179
+[][] 
+ []
+
+[7 <./figure/unnamed-chunk-2-4.pdf>]
+<figure/unnamed-chunk-2-6.pdf, id=68, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-2-6.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-6.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-2-6.pdf  used on input line 183. 
+on input line 183.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 18
+3.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 183--184
+[][] 
+ []
+
+[8 <./figure/unnamed-chunk-2-5.pdf>]
+<figure/unnamed-chunk-2-7.pdf, id=77, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-2-7.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-7.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-2-7.pdf  used on input line 188. 
+on input line 188.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 18
+8.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 188--189
+[][] 
+ []
+
+[9 <./figure/unnamed-chunk-2-6.pdf>]
+<figure/unnamed-chunk-2-8.pdf, id=86, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-2-8.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-8.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-2-8.pdf  used on input line 193. 
+on input line 193.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 19
+3.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 193--194
+[][] 
+ []
+
+[10 <./figure/unnamed-chunk-2-7.pdf>]
+<figure/unnamed-chunk-2-9.pdf, id=95, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-2-9.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-9.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-2-9.pdf  used on input line 198. 
+on input line 198.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 19
+8.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 198--199
+[][] 
+ []
+
+[11 <./figure/unnamed-chunk-2-8.pdf>]
+<figure/unnamed-chunk-2-10.pdf, id=104, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-2-10.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-10.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-2-10.pdf  used on input line 203.
+ on input line 203.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 20
+3.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 203--204
+[][] 
+ []
+
+[12 <./figure/unnamed-chunk-2-9.pdf>]
+Overfull \hbox (137.99579pt too wide) in paragraph at lines 209--209
+[][]\OT1/cmtt/m/n/10 plot[][](alph,[][]xlim[][]=[][]c[][]([][]0[][],[][]1[][]),
+[][]ylim[][]=[][]c[][]([][]-[][].2[][],[][]1[][]),[][]pch[][]=[][]19[][],[][]xl
+ab[][]=[][]"true correlation"[][],[][]ylab[][]=[][]"kr20"[][]);[] []abline[][](
+[][]0[][],[][]1[][])[][] 
+ []
+
+
+Overfull \hbox (811.72604pt too wide) in paragraph at lines 211--211
+[][]\OT1/cmtt/m/it/10 ##what you can see here is that the item response datsets
+ have the right property when it comes to the observed correlation between O an
+d T (these correlations are the dots; the red line is the pre-specified reliabi
+lity)[][] 
+ []
+
+
+Overfull \hbox (459.97911pt too wide) in paragraph at lines 214--214
+[][]\OT1/cmtt/m/it/10 ##q what is it? make sure you see that the true/error var
+iances are getting handled correctly (check the print statement and related out
+put from sim_ctt)[][] 
+ []
+
+
+Overfull \hbox (349.73007pt too wide) in paragraph at lines 215--215
+[][]\OT1/cmtt/m/it/10 ##q: any clues as to why this is happening? what is the f
+eature of my data generating mechanism that causes things to get all wacky?[][]
+ 
+ []
+
+<figure/unnamed-chunk-2-11.pdf, id=113, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-2-11.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-11.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-2-11.pdf  used on input line 220.
+ on input line 220.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 22
+0.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 220--221
+[][] 
+ []
+
+[13 <./figure/unnamed-chunk-2-10.pdf>]
+Overfull \hbox (333.98021pt too wide) in paragraph at lines 222--222
+[][]\OT1/cmtt/m/it/10 ##now let^^Ms look at reliabilities for many different da
+tasets generated by the above wherein we vary the true and error variances[][] 
+
+ []
+
+
+Overfull \hbox (206.2452pt too wide) in paragraph at lines 229--229
+[]            []\OT1/cmtt/m/n/10 alph[[i]][][]<-[][]sim_ctt[][]([][]N.items[][]
+=N.items,[][]N.ppl[][]=N.ppl,[][]s2.true[][]=s2.true,[][]s2.error[][]=s2.error,
+[][]check[][]=[][]FALSE[][])[][] 
+ []
+
+
+Overfull \hbox (200.99524pt too wide) in paragraph at lines 231--231
+[]        []\OT1/cmtt/m/n/10 plot[][]([][]do.call[][]([][]"rbind"[][],alph),[][
+]xlim[][]=[][]c[][]([][]-[][]1[][],[][]1[][]),[][]ylim[][]=[][]c[][]([][]-[][]1
+[][],[][]1[][]),[][]pch[][]=[][]19[][],[][]xlab[][]=[][]"true correlation"[][],
+[][]ylab[][]=[][]"kr20"[][])[][] 
+ []
+
+
+Overfull \hbox (179.99542pt too wide) in paragraph at lines 232--232
+[]        []\OT1/cmtt/m/n/10 mtext[][]([][]side[][]=[][]3[][],[][]line[][]=[][]
+0[][],[][]paste[][]([][]"s2.true"[][],[][]round[][](s2.true,[][]2[][]),[][]"; s
+2.error"[][],[][]round[][](s2.error,[][]2[][])),[][]cex[][]=[][].7[][])[][] 
+ []
+
+[14 <./figure/unnamed-chunk-2-11.pdf>]
+Underfull \vbox (badness 10000) detected at line 331
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 331
+ []
+
+[15]
+<figure/unnamed-chunk-2-12.pdf, id=134, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-2-12.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-12.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-2-12.pdf  used on input line 332.
+ on input line 332.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 33
+2.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 332--333
+[][] 
+ []
+
+[16]
+Overfull \hbox (181.73154pt too wide) in paragraph at lines 334--334
+[][]\OT1/cmtt/m/it/10 ##q. how does the kr20 estimate of reliability behave as 
+a function of the true and error variances?[][] 
+ []
+
+[17 <./figure/unnamed-chunk-2-12.pdf>] (./writeup.aux) ) 
+Here is how much of TeX's memory you used:
+ 1667 strings out of 492990
+ 25342 string characters out of 6135005
+ 93686 words of memory out of 5000000
+ 5200 multiletter control sequences out of 15000+600000
+ 7923 words of font info for 29 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,6n,25p,423b,280s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on writeup.pdf (17 pages, 311558 bytes).
+PDF statistics:
+ 183 PDF objects out of 1000 (max. 8388607)
+ 125 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+
