@@ -99,6 +99,7 @@ abline(v=s2.true/(s2.true+s2.error),col="red")
 ##what you can see here is that the item response datsets have the right property when it comes to the observed correlation between O and T (these correlations are the dots; the red line is the pre-specified reliability)
 ##but, kr20 is producing reliability estimates that are *way* low
 ##something is going disastrously awry.
+
 ##q what is it? make sure you see that the true/error variances are getting handled correctly (check the print statement and related output from sim_ctt)
 ##q: any clues as to why this is happening? what is the feature of my data generating mechanism that causes things to get all wacky?
 
