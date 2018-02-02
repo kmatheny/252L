@@ -18,7 +18,6 @@ sim_data<-function(b, #item difficulties
 
 
 
-
 ##first, the default
 b<-rnorm(50)
 resp<-sim_data(b=b) 
