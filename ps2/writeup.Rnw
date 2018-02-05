@@ -3,6 +3,10 @@
 \title{Problem Set 2}
 \author{Kaylee, Carrie, Kritphong, Filipe and Klint \\ EDUC 252L}
 
+<<echo=FALSE>>=
+knitr::opts_chunk$set(cache=TRUE)
+@
+
 \begin{document}
 \maketitle
 \section{Breaking the Classical Test Theory Model}
