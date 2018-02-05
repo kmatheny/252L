@@ -1,5 +1,9 @@
 \documentclass{article}
 
+\usepackage{lineno}
+
+\linenumbers
+
 \title{Problem Set 2}
 \author{Kaylee, Carrie, Kritphong, Filipe and Klint \\ EDUC 252L}
 
