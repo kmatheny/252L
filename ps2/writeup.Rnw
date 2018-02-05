@@ -5,7 +5,7 @@
 \linenumbers
 
 \title{Problem Set 2}
-\author{Kaylee, Carrie, Kritphong, Filipe and Klint \\ EDUC 252L}
+\author{Carrie Kathlyn Townley Flores, Filipe Recch, Kaylee Tuggle Matheny, \\ Klint Kanopka, Kritphong Mongkhonvanit, Paulina Julia Biernacki \\ EDUC 252L}
 
 <<echo=FALSE>>=
 knitr::opts_chunk$set(cache=TRUE)
