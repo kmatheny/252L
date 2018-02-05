@@ -158,7 +158,8 @@ Looking at the resulting plots, it's clear that even with nonsensical item respo
 <<echo=FALSE, results='hide'>>=
 sim_data<-function(b, #item difficulties
                    np=1000,
-                   link=function(x) exp(x)/(1+exp(x))
+                   link=function(x) exp(x)/(1+exp(x)),
+		   min_pr=0
                    )
 {
     ni<-length(b)
@@ -167,7 +168,7 @@ sim_data<-function(b, #item difficulties
     a<-1
     b.mat<-matrix(b,np,ni,byrow=TRUE) #these are the item difficulties
     ##now the probability of a correct response is:
-    pr<-link(a*th.mat+b.mat) ##look very carefully here at how b.mat is being included. is this what you expect? if not, take a look at ?mirt (specifically the form used for the Rash itemtype).
+    pr<-lapply(link(a*th.mat+b.mat),function(x) max(min_pr,x)) ##look very carefully here at how b.mat is being included. is this what you expect? if not, take a look at ?mirt (specifically the form used for the Rash itemtype).
     test<-matrix(runif(ni*np),np,ni)
     resp<-ifelse(pr>test,1,0)
     colnames(resp)<-paste("i",1:ncol(resp))
@@ -237,5 +238,53 @@ plot(b,get_coef(m)[,2]); abline(0,1) #hm, what is going on here? can we make sen
 @
 
 When using a skewed distribution as the link function, every item is estimated as being harder than it actually is, but where this model really tanks is for extremely easy items.  It finds those to be significantly harder than they actually are and the difference between actual and estimated difficulty for easy items diverges wildly.  The skew on the link function is set up in a way that there is essentially no impact of increased $\theta$ on the respondent's probability of getting the item correct until $\theta$ gets to a value of $-1$.  Remember that the input to the model is of the form $\theta_i + b_j$.  If trait values less than $-1$ don't provide any increase in probability of scoring correctly on an item, for items with easiness above $1$, the model will view those as significantly harder than they actually are.  If you look at the $b_estimated$ vs. $b$ curve, you can see that at $b =1$, the estimated easiness starts to take a turn away from actual easiness.
+
+\section{Simulated IRT Data}
+
+\subsection{The Default}
+<<echo=FALSE, results='hide'>>=
+##first, the default
+b<-rnorm(50)
+resp<-sim_data(b=b,min_pr=0.25)
+library(mirt)
+m<-mirt(resp,1,itemtype="Rasch")
+get_coef<-function(mod) {
+    coef(mod)->co
+    co[-length(co)]->co
+    do.call("rbind",co)
+}
+plot(b,get_coef(m)[,2]); abline(0,1)
+@
+
+\subsection{The Normal}
+<<echo=FALSE, results='hide'>>=
+##now, the normal
+b<-rnorm(50)
+resp<-sim_data(b=b,link=pnorm,min_pr=0.25)
+m<-mirt(resp,1,itemtype="Rasch")
+plot(b,get_coef(m)[,2]); abline(0,1)
+@
+
+\subsection{Heavy Tails}
+<<echo=FALSE, results='hide'>>=
+##something with heavy tails
+b<-rnorm(50)
+resp<-sim_data(b=b,link=function(x) pt(x,df=50),min_pr=0.25)
+m<-mirt(resp,1,itemtype="Rasch")
+plot(b,get_coef(m)[,2]); abline(0,1)
+@
+
+\subsection{Skewed}
+<<echo=FALSE, results='hide'>>=
+##skew
+library(sn)
+x<-seq(-3,3,length.out=100)
+plot(x,dsn(x,alpha=3),type="l") #note the skew
+plot(x,psn(x,alpha=3),type="l") #corresponding icc
+b<-rnorm(50)
+resp<-sim_data(b=b,link=function(x) dsn(x,alpha=3),min_pr=0.25)
+m<-mirt(resp,1,itemtype="Rasch")
+plot(b,get_coef(m)[,2]); abline(0,1) #hm, what is going on here? can we make sense of why parameter estimation is quite bad when b is large
+@
 
 \end{document}
