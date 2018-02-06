@@ -163,7 +163,7 @@ Looking at the resulting plots, it's clear that even with nonsensical item respo
 \pagebreak
 \section{Different Link Functions}
 \subsection{The Default}
-<<echo=FALSE, results='hide'>>=
+<<echo=FALSE, message=FALSE, results='hide'>>=
 sim_data<-function(b, #item difficulties
                    np=1000,
                    link=function(x) exp(x)/(1+exp(x)),
@@ -231,7 +231,7 @@ Using a link function with heavy tails, mirt does essentially the same as above,
 
 \subsection{Skewed}
 
-<<echo=FALSE, results='hide'>>=
+<<echo=FALSE, message=FALSE, results='hide'>>=
 
 ##skew
 library(sn)
