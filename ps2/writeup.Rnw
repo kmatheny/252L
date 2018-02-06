@@ -30,7 +30,7 @@ knitr::opts_chunk$set(cache=TRUE)
       \[ \alpha = \frac{K}{K-1}\Bigg(1-\frac{0.25K}{0.25K}\Bigg)\]
       \[ \alpha = \frac{K}{K-1}(1-1)\]
       \[ \alpha = 0 \]
-    The expectation, then, is that $\alpha$ shoudl be zero for each situation.
+    The expectation, then, is that $\alpha$ should be zero for each situation.
 
 
 <<echo=FALSE>>=
@@ -214,7 +214,7 @@ plot(b,get_coef(m)[,2]); abline(0,1)
 
 @
 
-Using a normal link function, mirt predicts easy items are easier than they actually are and hard items are harder than they actually are.  The farther an item is from zero, the larger the gap between estimated diffuculty and specified difficulty.  The slope of the line here is 1.7, so it is possible to transform between them, but the community tends to prefer the logistic because it is computationally simpler (even if the normal is theoretically nicer).
+Using a normal link function, mirt predicts easy items are easier than they actually are and hard items are harder than they actually are.  The farther an item is from zero, the larger the gap between estimated difficulty and specified difficulty.  The slope of the line here is 1.7, so it is possible to transform between them, but the community tends to prefer the logistic because it is computationally simpler (even if the normal is theoretically nicer).
 
 \subsection{Heavy Tails}
 
@@ -298,6 +298,6 @@ plot(b,coefs[,1]); abline(0,1) #how about this?
 
 @
 
-When looking at the item easiness estimates, the model overestimates easiness.  This is especially true for the harder questions(easiness less than zero), where the estimate starts to diverge from the actual difficulty.  One explanation for this is that for harder questions, a larger segment of the population is benefitting from guessing, where on easier questions, a smaller segment of the population benefits from guessing (because they were already getting that item correct).
+When looking at the item easiness estimates, the model overestimates easiness.  This is especially true for the harder questions(easiness less than zero), where the estimate starts to diverge from the actual difficulty.  One explanation for this is that for harder questions, a larger segment of the population is benefiting from guessing, where on easier questions, a smaller segment of the population benefits from guessing (because they were already getting that item correct).
 
 \end{document}
