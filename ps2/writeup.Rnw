@@ -5,7 +5,7 @@
 \linenumbers
 
 \title{Problem Set 2}
-\author{Carrie Kathlyn Townley Flores, Filipe Recch, Kaylee Tuggle Matheny, \\ Klint Kanopka, Kritphong Mongkhonvanit, Paulina Julia Biernacki \\ EDUC 252L}
+\author{Carrie Kathlyn Townley Flores, Filipe Recch, Kaylee Tuggle Matheny, \\ Klint Kanopka, Kritphong Mongkhonvanit \\ EDUC 252L}
 
 <<echo=FALSE>>=
 knitr::opts_chunk$set(cache=TRUE)
@@ -176,7 +176,7 @@ sim_data<-function(b, #item difficulties
     a<-1
     b.mat<-matrix(b,np,ni,byrow=TRUE) #these are the item difficulties
     ##now the probability of a correct response is:
-    pr<-lapply(link(a*th.mat+b.mat),function(x) max(min_pr,x)) ##look very carefully here at how b.mat is being included. is this what you expect? if not, take a look at ?mirt (specifically the form used for the Rash itemtype).
+    pr<-min_pr+(1-min_pr)*link(a*th.mat+b.mat) ##look very carefully here at how b.mat is being included. is this what you expect? if not, take a look at ?mirt (specifically the form used for the Rash itemtype).
     test<-matrix(runif(ni*np),np,ni)
     resp<-ifelse(pr>test,1,0)
     colnames(resp)<-paste("i",1:ncol(resp))
@@ -214,7 +214,7 @@ plot(b,get_coef(m)[,2]); abline(0,1)
 
 @
 
-Using a normal link function, mirt predicts easy items are easier than they actually are and hard items are harder than they actually are.  The farther an item is from zero, the larger the gap between estimated diffuculty and specified difficulty.
+Using a normal link function, mirt predicts easy items are easier than they actually are and hard items are harder than they actually are.  The farther an item is from zero, the larger the gap between estimated diffuculty and specified difficulty.  The slope of the line here is 1.7, so it is possible to transform between them, but the community tends to prefer the logistic because it is computationally simpler (even if the normal is theoretically nicer).
 
 \subsection{Heavy Tails}
 
@@ -227,7 +227,7 @@ plot(b,get_coef(m)[,2]); abline(0,1)
 
 @
 
-Using a link function with heavy tails, mirt does the same as above.
+Using a link function with heavy tails, mirt does essentially the same as above, just with more divergence farther from zero.
 
 \subsection{Skewed}
 
@@ -245,54 +245,59 @@ plot(b,get_coef(m)[,2]); abline(0,1) #hm, what is going on here? can we make sen
 
 @
 
-When using a skewed distribution as the link function, every item is estimated as being harder than it actually is, but where this model really tanks is for extremely easy items.  It finds those to be significantly harder than they actually are and the difference between actual and estimated difficulty for easy items diverges wildly.  The skew on the link function is set up in a way that there is essentially no impact of increased $\theta$ on the respondent's probability of getting the item correct until $\theta$ gets to a value of $-1$.  Remember that the input to the model is of the form $\theta_i + b_j$.  If trait values less than $-1$ don't provide any increase in probability of scoring correctly on an item, for items with easiness above $1$, the model will view those as significantly harder than they actually are.  If you look at the $b_estimated$ vs. $b$ curve, you can see that at $b =1$, the estimated easiness starts to take a turn away from actual easiness.
+When using a skewed distribution as the link function, every item is estimated as being harder than it actually is, but where this model really tanks is for extremely easy items.  It finds those to be significantly harder than they actually are and the difference between actual and estimated difficulty for easy items diverges wildly.  The skew on the link function is set up in a way that there is essentially no impact of increased $\theta$ on the respondent's probability of getting the item correct until $\theta$ gets to a value of $-1$.  Remember that the input to the model is of the form $\theta_i + b_j$.  If trait values less than $-1$ don't provide any increase in probability of scoring correctly on an item, for items with easiness above $1$, the model will view those as significantly harder than they actually are.  If you look at the $b_estimated$ vs. $b$ curve, you can see that at $b =1$, the estimated easiness starts to take a turn away from actual easiness.  This is a product of the link function being non-symmetric, essentially causing the two halves of the graph to be scaled differently.
 
-\section{Simulated IRT Data}
+\pagebreak
+\section{Adding A Lower Asymptote}
 
-\subsection{The Default}
 <<echo=FALSE, results='hide'>>=
-##first, the default
-b<-rnorm(50)
-resp<-sim_data(b=b,min_pr=0.25)
-library(mirt)
-m<-mirt(resp,1,itemtype="Rasch")
-get_coef<-function(mod) {
-    coef(mod)->co
-    co[-length(co)]->co
-    do.call("rbind",co)
+
+ni<-50
+np<-10000
+##now we're going to simulate data according to this model and examine some key properties
+set.seed(12311)
+##first let's describe the individual level part of the model
+th<-rnorm(np)
+th.mat<-matrix(th,np,ni,byrow=FALSE) #these are the true abilities. we don't observe them, which will be a real problem for us downstream. but we'll not worry about that today. 
+##now the item level part. this is going to look like logistic regression, meaning we will have a slope and an intercept
+a<-1 ##for reasons we'll get into later, let's start with a slope equal to 1
+b<-rnorm(ni)
+b.mat<-matrix(b,np,ni,byrow=TRUE) #these are the item difficulties
+
+################################################################
+##now we have to put this stuff together. what we want is a probability of a correct response for a person to an item
+##we're goign to use what you may know from logistic regression
+inv_logit<-function(x) exp(x)/(1+exp(x))
+##now the probability of a correct response is:
+pr<-.25+.75*inv_logit(a*th.mat+b.mat)
+##we can simulate data using that probability
+##here is the kind of sneaky way i like to do it.
+test<-matrix(runif(ni*np),np,ni)
+resp<-ifelse(pr>test,1,0)
+
+################################################################
+##we're going to now consider a prototype of an item response model
+##bump up the sample size to a reasonable level before you do this.
+coefs<-list()
+for (i in 1:ncol(resp)) {
+    glm(resp[,i]~th,family="binomial")->mod
+    coef(mod)->coefs[[i]]
 }
-plot(b,get_coef(m)[,2]); abline(0,1)
+do.call("rbind",coefs)->coefs
+
+##let's consider them separately.
+plot(density(coefs[,2])) #what do you make of this?
+
+
 @
 
-\subsection{The Normal}
+When moving the lower asymptote above zero, we simulate guessing.  In the original model, with no guessing parameter, the discrimination density plot was centered around 1.  Now, it is centered around 0.75.  This happens because raising the floor of the logistic curve fundamentally changes its shape, lowering the discrimination.
+
 <<echo=FALSE, results='hide'>>=
-##now, the normal
-b<-rnorm(50)
-resp<-sim_data(b=b,link=pnorm,min_pr=0.25)
-m<-mirt(resp,1,itemtype="Rasch")
-plot(b,get_coef(m)[,2]); abline(0,1)
+plot(b,coefs[,1]); abline(0,1) #how about this?
+
 @
 
-\subsection{Heavy Tails}
-<<echo=FALSE, results='hide'>>=
-##something with heavy tails
-b<-rnorm(50)
-resp<-sim_data(b=b,link=function(x) pt(x,df=50),min_pr=0.25)
-m<-mirt(resp,1,itemtype="Rasch")
-plot(b,get_coef(m)[,2]); abline(0,1)
-@
-
-\subsection{Skewed}
-<<echo=FALSE, results='hide'>>=
-##skew
-library(sn)
-x<-seq(-3,3,length.out=100)
-plot(x,dsn(x,alpha=3),type="l") #note the skew
-plot(x,psn(x,alpha=3),type="l") #corresponding icc
-b<-rnorm(50)
-resp<-sim_data(b=b,link=function(x) dsn(x,alpha=3),min_pr=0.25)
-m<-mirt(resp,1,itemtype="Rasch")
-plot(b,get_coef(m)[,2]); abline(0,1) #hm, what is going on here? can we make sense of why parameter estimation is quite bad when b is large
-@
+When looking at the item easiness estimates, the model overestimates easiness.  This is especially true for the harder questions(easiness less than zero), where the estimate starts to diverge from the actual difficulty.  One explanation for this is that for harder questions, a larger segment of the population is benefitting from guessing, where on easier questions, a smaller segment of the population benefits from guessing (because they were already getting that item correct).
 
 \end{document}

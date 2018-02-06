@@ -50,8 +50,15 @@
 
 \usepackage{alltt}
 
+\usepackage{lineno}
+
+\linenumbers
+
 \title{Problem Set 2}
-\author{Kaylee, Carrie, Kritphong, Filipe and Klint \\ EDUC 252L}
+\author{Carrie Kathlyn Townley Flores, Filipe Recch, Kaylee Tuggle Matheny, \\ Klint Kanopka, Kritphong Mongkhonvanit \\ EDUC 252L}
+
+
+
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 \maketitle
@@ -77,7 +84,7 @@
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-1-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-2-1} 
 
 \end{knitrout}
 
@@ -87,7 +94,7 @@
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-2-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-3-1} 
 
 \end{knitrout}
 
@@ -95,7 +102,7 @@ The feature of the data generation mechanism that makes the $\alpha$ values supe
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-3-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-4-1} 
 
 \end{knitrout}
 
@@ -111,25 +118,31 @@ Looking at the resulting plots, it's clear that even with nonsensical item respo
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: stats4}}
 
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: lattice}}\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-4-1} 
-
-\end{knitrout}
-
-\subsection{The Normal}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-5-1} 
 
 \end{knitrout}
 
-\subsection{Heavy Tails}
+The default estimates item difficulties (or item easiness, specifically, because mirt) that are in line with the actual (specified) item difficulties.
+
+\subsection{The Normal}
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-6-1} 
 
 \end{knitrout}
+
+Using a normal link function, mirt predicts easy items are easier than they actually are and hard items are harder than they actually are.  The farther an item is from zero, the larger the gap between estimated diffuculty and specified difficulty.  The slope of the line here is 1.7, so it is possible to transform between them, but the community tends to prefer the logistic because it is computationally simpler (even if the normal is theoretically nicer).
+
+\subsection{Heavy Tails}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-1} 
+
+\end{knitrout}
+
+Using a link function with heavy tails, mirt does essentially the same as above, just with more divergence farther from zero.
 
 \subsection{Skewed}
 
@@ -140,13 +153,33 @@ Looking at the resulting plots, it's clear that even with nonsensical item respo
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'sn'}}
 
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:stats':\\\#\# \\\#\#\ \ \ \  sd}}\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-8-1} 
 
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-2} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-8-2} 
 
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-3} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-8-3} 
 
 \end{knitrout}
 
+When using a skewed distribution as the link function, every item is estimated as being harder than it actually is, but where this model really tanks is for extremely easy items.  It finds those to be significantly harder than they actually are and the difference between actual and estimated difficulty for easy items diverges wildly.  The skew on the link function is set up in a way that there is essentially no impact of increased $\theta$ on the respondent's probability of getting the item correct until $\theta$ gets to a value of $-1$.  Remember that the input to the model is of the form $\theta_i + b_j$.  If trait values less than $-1$ don't provide any increase in probability of scoring correctly on an item, for items with easiness above $1$, the model will view those as significantly harder than they actually are.  If you look at the $b_estimated$ vs. $b$ curve, you can see that at $b =1$, the estimated easiness starts to take a turn away from actual easiness.  This is a product of the link function being non-symmetric, essentially causing the two halves of the graph to be scaled differently.
+
+\pagebreak
+\section{Adding A Lower Asymptote}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-9-1} 
+
+\end{knitrout}
+
+When moving the lower asymptote above zero, we simulate guessing.  In the original model, with no guessing parameter, the discrimination density plot was centered around 1.  Now, it is centered around 0.75.  This happens because raising the floor of the logistic curve fundamentally changes its shape, lowering the discrimination.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-10-1} 
+
+\end{knitrout}
+
+When looking at the item easiness estimates, the model overestimates easiness.  This is especially true for the harder questions(easiness less than zero), where the estimate starts to diverge from the actual difficulty.  One explanation for this is that for harder questions, a larger segment of the population is benefitting from guessing, where on easier questions, a smaller segment of the population benefits from guessing (because they were already getting that item correct).
 
 \end{document}

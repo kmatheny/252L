@@ -3,7 +3,7 @@
 ##they are models of human behavior: higher ability translates to a higher probability of correct response in a systematic fashion.
 
 ##number of items and people. we'll start small just so that you can see everything, but you'll want to make this bigger downstream.
-ni<-30
+ni<-50
 np<-10000
 ##now we're going to simulate data according to this model and examine some key properties
 set.seed(12311)
@@ -20,7 +20,7 @@ b.mat<-matrix(b,np,ni,byrow=TRUE) #these are the item difficulties
 ##we're goign to use what you may know from logistic regression
 inv_logit<-function(x) exp(x)/(1+exp(x))
 ##now the probability of a correct response is:
-pr<-inv_logit(a*th.mat+b.mat)
+pr<-.25+.75*inv_logit(a*th.mat+b.mat)
 ##we can simulate data using that probability
 ##here is the kind of sneaky way i like to do it.
 test<-matrix(runif(ni*np),np,ni)

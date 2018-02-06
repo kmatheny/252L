@@ -34,13 +34,13 @@ plot(b,get_coef(m)[,2]); abline(0,1)
 b<-rnorm(50)
 resp<-sim_data(b=b,link=pnorm) 
 m<-mirt(resp,1,itemtype="Rasch")
-plot(b,get_coef(m)[,2]); abline(0,1) 
+plot(b,get_coef(m)[,2]); abline(0,1.7) 
 
 ##something with heavy tails
 b<-rnorm(50)
 resp<-sim_data(b=b,link=function(x) pt(x,df=50)) 
 m<-mirt(resp,1,itemtype="Rasch")
-plot(b,get_coef(m)[,2]); abline(0,1) 
+plot(b,get_coef(m)[,2]); abline(0,1.7) 
 
 ##skew
 library(sn)
