@@ -164,7 +164,7 @@ Looking at the resulting plots, it's clear that even with nonsensical item respo
 \section{Basic Structure of IR Models}
 \begin{enumerate}
 \item
-<<reults='hide', echo=FALSE>>=
+<<results='hide', echo=FALSE>>=
 ni<-30
 np<-100000
 ##now we're going to simulate data according to this model and examine some key properties
@@ -209,13 +209,13 @@ and a is the item discrimination coefficient.
 
 
 \item
-<<reults='hide', echo=FALSE>>=
+<<results='hide', echo=FALSE>>=
 plot(b,coefs[,1]); abline(0,1)
 @
 This plot shows that the b's are almost the same as the intercepts, which makes sense because it means that the actual item easiness is close to the estimated easiness.
 
 \item
-<<reults='hide', echo=FALSE>>=
+<<results='hide', echo=FALSE>>=
 sim_data<-function(b, #item difficulties
                    np=1000,
                    link=function(x) exp(x)/(1+exp(x))
@@ -260,10 +260,9 @@ b<-rnorm(50)
 resp<-sim_data(b=b,link=function(x) pt(x,df=50)) 
 m<-mirt(resp,1,itemtype="Rasch")
 #plot(b,get_coef(m)[,2]); abline(0,1) 
-?pt
-m[,2]
+
 ##skew
-install.packages("sn")
+
 library(sn)
 x<-seq(-3,3,length.out=100)
 plot(x,dsn(x,alpha=3),type="l") #note the skew

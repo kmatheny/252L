@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2017.11.3)  5 FEB 2018 22:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2017.11.3)  7 FEB 2018 15:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -226,116 +226,162 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 105--106
  []
 
 [3 <./figure/unnamed-chunk-3-1.pdf>] [4 <./figure/unnamed-chunk-4-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 115.
+Package color Info: Redefining color shadecolor on input line 116.
 <figure/unnamed-chunk-5-1.pdf, id=45, pagebox=cropbox, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-5-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-5-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-5-1.pdf  used on input line 121. 
-on input line 121.
-Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 12
-1.
-Package color Info: Redefining color shadecolor on input line 130.
-<figure/unnamed-chunk-6-1.pdf, id=46, pagebox=cropbox, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-6-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-6-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-6-1.pdf  used on input line 131. 
-on input line 131.
-Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 13
-1.
-
-[5 <./figure/unnamed-chunk-5-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 140.
-<figure/unnamed-chunk-7-1.pdf, id=56, pagebox=cropbox, 505.89pt x 505.89pt>
+Package pdftex.def Info: figure/unnamed-chunk-5-1.pdf  used on input line 117. 
+on input line 117.
+Package pdftex.def Info: Requested size: 319.99997pt x 320.0015pt on input line
+ 117.
+Package color Info: Redefining color shadecolor on input line 122.
+Package color Info: Redefining color shadecolor on input line 133.
+<figure/unnamed-chunk-7-1.pdf, id=46, pagebox=cropbox, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-7-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-7-1.pdf  used on input line 141. 
-on input line 141.
-Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 14
-1.
- [6 <./figure/unnamed-chunk-6-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 150.
-<figure/unnamed-chunk-8-1.pdf, id=65, pagebox=cropbox, 505.89pt x 505.89pt>
+Package pdftex.def Info: figure/unnamed-chunk-7-1.pdf  used on input line 134. 
+on input line 134.
+Package pdftex.def Info: Requested size: 319.99997pt x 320.0015pt on input line
+ 134.
+
+[5 <./figure/unnamed-chunk-5-1.pdf>]
+Package color Info: Redefining color shadecolor on input line 141.
+<figure/unnamed-chunk-8-1.pdf, id=57, pagebox=cropbox, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-8-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-8-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-8-1.pdf  used on input line 156. 
-on input line 156.
-Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 15
-6.
-
-[7 <./figure/unnamed-chunk-7-1.pdf>]
-<figure/unnamed-chunk-8-2.pdf, id=75, pagebox=cropbox, 505.89pt x 505.89pt>
+Package pdftex.def Info: figure/unnamed-chunk-8-1.pdf  used on input line 142. 
+on input line 142.
+Package pdftex.def Info: Requested size: 319.99997pt x 320.0015pt on input line
+ 142.
+ [6 <./figure/unnamed-chunk-7-1.pdf>]
+<figure/unnamed-chunk-8-2.pdf, id=66, pagebox=cropbox, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-8-2.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-8-2.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-8-2.pdf  used on input line 158. 
-on input line 158.
-Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 15
-8.
+Package pdftex.def Info: figure/unnamed-chunk-8-2.pdf  used on input line 144. 
+on input line 144.
+Package pdftex.def Info: Requested size: 319.99997pt x 320.0015pt on input line
+ 144.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 158--159
-[][] 
- []
-
-[8 <./figure/unnamed-chunk-8-1.pdf>]
-<figure/unnamed-chunk-8-3.pdf, id=84, pagebox=cropbox, 505.89pt x 505.89pt>
+[7 <./figure/unnamed-chunk-8-1.pdf>]
+<figure/unnamed-chunk-8-3.pdf, id=76, pagebox=cropbox, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-8-3.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-8-3.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-8-3.pdf  used on input line 160. 
-on input line 160.
-Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 16
-0.
-
-Overfull \hbox (15.0pt too wide) in paragraph at lines 160--161
-[][] 
- []
-
-[9 <./figure/unnamed-chunk-8-2.pdf>] [10 <./figure/unnamed-chunk-8-3.pdf>]
-Package color Info: Redefining color shadecolor on input line 170.
-<figure/unnamed-chunk-9-1.pdf, id=101, pagebox=cropbox, 505.89pt x 505.89pt>
+Package pdftex.def Info: figure/unnamed-chunk-8-3.pdf  used on input line 146. 
+on input line 146.
+Package pdftex.def Info: Requested size: 319.99997pt x 320.0015pt on input line
+ 146.
+ [8 <./figure/unnamed-chunk-8-2.pdf>]
+Package color Info: Redefining color shadecolor on input line 156.
+<figure/unnamed-chunk-9-1.pdf, id=85, pagebox=cropbox, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-9-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-9-1.pdf  used on input line 171. 
-on input line 171.
-Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 17
-1.
-Package color Info: Redefining color shadecolor on input line 178.
-<figure/unnamed-chunk-10-1.pdf, id=102, pagebox=cropbox, 505.89pt x 505.89pt>
+Package pdftex.def Info: figure/unnamed-chunk-9-1.pdf  used on input line 157. 
+on input line 157.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 15
+7.
+
+[9 <./figure/unnamed-chunk-8-3.pdf>]
+Package color Info: Redefining color shadecolor on input line 166.
+<figure/unnamed-chunk-10-1.pdf, id=94, pagebox=cropbox, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-10-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-10-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-10-1.pdf  used on input line 179.
- on input line 179.
+Package pdftex.def Info: figure/unnamed-chunk-10-1.pdf  used on input line 167.
+ on input line 167.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 16
+7.
+ [10 <./figure/unnamed-chunk-9-1.pdf>]
+Package color Info: Redefining color shadecolor on input line 176.
+<figure/unnamed-chunk-11-1.pdf, id=103, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-11-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-11-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-11-1.pdf  used on input line 177.
+ on input line 177.
 Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 17
+7.
+
+[11 <./figure/unnamed-chunk-10-1.pdf>]
+Package color Info: Redefining color shadecolor on input line 186.
+<figure/unnamed-chunk-12-1.pdf, id=112, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-12-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-12-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-12-1.pdf  used on input line 187.
+ on input line 187.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 18
+7.
+ [12 <./figure/unnamed-chunk-11-1.pdf>]
+<figure/unnamed-chunk-12-2.pdf, id=121, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-12-2.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-12-2.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-12-2.pdf  used on input line 189.
+ on input line 189.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 18
 9.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 179--180
+Overfull \hbox (15.0pt too wide) in paragraph at lines 189--190
 [][] 
  []
 
-[11 <./figure/unnamed-chunk-9-1.pdf>] [12 <./figure/unnamed-chunk-10-1.pdf>]
+[13 <./figure/unnamed-chunk-12-1.pdf>]
+<figure/unnamed-chunk-12-3.pdf, id=131, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-12-3.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-12-3.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-12-3.pdf  used on input line 191.
+ on input line 191.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 19
+1.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 191--192
+[][] 
+ []
+
+[14 <./figure/unnamed-chunk-12-2.pdf>] [15 <./figure/unnamed-chunk-12-3.pdf>]
+Package color Info: Redefining color shadecolor on input line 201.
+<figure/unnamed-chunk-13-1.pdf, id=148, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-13-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-13-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-13-1.pdf  used on input line 202.
+ on input line 202.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 20
+2.
+Package color Info: Redefining color shadecolor on input line 209.
+<figure/unnamed-chunk-14-1.pdf, id=149, pagebox=cropbox, 505.89pt x 505.89pt>
+File: figure/unnamed-chunk-14-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-14-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-14-1.pdf  used on input line 210.
+ on input line 210.
+Package pdftex.def Info: Requested size: 345.0pt x 345.00414pt on input line 21
+0.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 210--211
+[][] 
+ []
+
+[16 <./figure/unnamed-chunk-13-1.pdf>] [17 <./figure/unnamed-chunk-14-1.pdf>]
 (./writeup.aux) ) 
 Here is how much of TeX's memory you used:
- 1848 strings out of 492990
- 27759 string characters out of 6135005
+ 1871 strings out of 492990
+ 28646 string characters out of 6135005
  83448 words of memory out of 5000000
- 5381 multiletter control sequences out of 15000+600000
- 8569 words of font info for 31 fonts, out of 8000000 for 9000
+ 5400 multiletter control sequences out of 15000+600000
+ 8401 words of font info for 30 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,6n,25p,1128b,204s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,6n,25p,1128b,260s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmti10.pfb>
-Output written on writeup.pdf (12 pages, 204090 bytes).
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmtt10.pfb>
+Output written on writeup.pdf (17 pages, 235546 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
- 110 compressed objects within 2 object streams
+ 207 PDF objects out of 1000 (max. 8388607)
+ 142 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
