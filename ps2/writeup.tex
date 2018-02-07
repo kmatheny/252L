@@ -89,7 +89,7 @@
 \end{knitrout}
 
     These $\alpha$ plots make sense - they are centered around zero, as predicted, and as the number of items increases, $\alpha$ is more tightly clustered around zero.
-
+\pagebreak
   \subsection{Simulating Item Response Data}
 
 \begin{knitrout}
@@ -109,34 +109,41 @@ The feature of the data generation mechanism that makes the $\alpha$ values supe
 Looking at the resulting plots, it's clear that even with nonsensical item response data, the KR-20 estimate of reliability increases as a function of both true score variance and error variance.  This \em feels \em very wrong.  Increasing true score variance can be done by applying an instrument to a population it may not have been originally designed for.  Increasing error variance can be done by adding more items or manipulating the quality of items.  The challenge with feeling good about the CTT model is that KR-20 is both heavily valued and easily manipulated.  The worst part is that some of the behaviors that would increase a KR-20 value could have negative impacts on the validity of the instrument.
 
 \pagebreak
-\section{Basic Structure of IR Models}
-\begin{enumerate}
-\item
+\section{Different Link Functions}
+\subsection{The Default}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-5-1} 
 
 \end{knitrout}
-The plot shows the density of the item discriminations (i.e. the coefficients of the thetas in the equation $\beta_0 + \beta_1 \theta$), which means the density of the items' discrinations. The more the sample size is increased, the closer it appears to a normal distribution with a mean at 1. That means the discriminations are near 1. This makes sense because earlier in the code, we had set
+
+The default estimates item difficulties (or item easiness, specifically, because mirt) that are in line with the actual (specified) item difficulties.
+
+\pagebreak
+\subsection{The Normal}
+
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{a} \hlkwb{<-} \hlnum{1}
-\end{alltt}
-\end{kframe}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-6-1} 
+
 \end{knitrout}
-and a is the item discrimination coefficient.
 
+Using a normal link function, mirt predicts easy items are easier than they actually are and hard items are harder than they actually are.  The farther an item is from zero, the larger the gap between estimated difficulty and specified difficulty.  The slope of the line here is 1.7, so it is possible to transform between them, but the community tends to prefer the logistic because it is computationally simpler (even if the normal is theoretically nicer).
 
-\item
+\pagebreak
+\subsection{Heavy Tails}
+
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-1} 
 
 \end{knitrout}
-This plot shows that the b's are almost the same as the intercepts, which makes sense because it means that the actual item easiness is close to the estimated easiness.
 
-\item
+Using a link function with heavy tails, mirt does essentially the same as above, just with more divergence farther from zero.
+
+\pagebreak
+\subsection{Skewed}
+
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-8-1} 
@@ -144,51 +151,6 @@ This plot shows that the b's are almost the same as the intercepts, which makes 
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-8-2} 
 
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-8-3} 
-
-\end{knitrout}
-This is showing that when items get easier, the estimation gets worse and actually predicts that they're harder. 
-
-\end{enumerate}
-
-\section{Different Link Functions}
-\subsection{The Default}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-9-1} 
-
-\end{knitrout}
-
-The default estimates item difficulties (or item easiness, specifically, because mirt) that are in line with the actual (specified) item difficulties.
-
-\subsection{The Normal}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-10-1} 
-
-\end{knitrout}
-
-Using a normal link function, mirt predicts easy items are easier than they actually are and hard items are harder than they actually are.  The farther an item is from zero, the larger the gap between estimated difficulty and specified difficulty.  The slope of the line here is 1.7, so it is possible to transform between them, but the community tends to prefer the logistic because it is computationally simpler (even if the normal is theoretically nicer).
-
-\subsection{Heavy Tails}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-1} 
-
-\end{knitrout}
-
-Using a link function with heavy tails, mirt does essentially the same as above, just with more divergence farther from zero.
-
-\subsection{Skewed}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-12-1} 
-
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-12-2} 
-
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-12-3} 
 
 \end{knitrout}
 
@@ -199,7 +161,7 @@ When using a skewed distribution as the link function, every item is estimated a
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-13-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-9-1} 
 
 \end{knitrout}
 
@@ -207,7 +169,7 @@ When moving the lower asymptote above zero, we simulate guessing.  In the origin
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-14-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-10-1} 
 
 \end{knitrout}
 

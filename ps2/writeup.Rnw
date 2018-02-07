@@ -7,8 +7,10 @@
 \title{Problem Set 2}
 \author{Carrie Kathlyn Townley Flores, Filipe Recch, Kaylee Tuggle Matheny, \\ Klint Kanopka, Kritphong Mongkhonvanit \\ EDUC 252L}
 
-<<echo=FALSE>>=
-knitr::opts_chunk$set(cache=TRUE)
+<<echo=FALSE, warning=FALSE, message=FALSE>>=
+#knitr::opts_chunk$set(cache=TRUE)
+library(sn)
+library(mirt)
 @
 
 \begin{document}
@@ -53,7 +55,7 @@ mtext(side=1,line=.5,"from coin flips")
 @
 
     These $\alpha$ plots make sense - they are centered around zero, as predicted, and as the number of items increases, $\alpha$ is more tightly clustered around zero.
-
+\pagebreak
   \subsection{Simulating Item Response Data}
 
 <<echo=FALSE, results='hide'>>=
@@ -161,121 +163,6 @@ for (s2.true in N.items*c(.1,.5,.9)) {
 Looking at the resulting plots, it's clear that even with nonsensical item response data, the KR-20 estimate of reliability increases as a function of both true score variance and error variance.  This \em feels \em very wrong.  Increasing true score variance can be done by applying an instrument to a population it may not have been originally designed for.  Increasing error variance can be done by adding more items or manipulating the quality of items.  The challenge with feeling good about the CTT model is that KR-20 is both heavily valued and easily manipulated.  The worst part is that some of the behaviors that would increase a KR-20 value could have negative impacts on the validity of the instrument.
 
 \pagebreak
-\section{Basic Structure of IR Models}
-\begin{enumerate}
-\item
-<<results='hide', echo=FALSE>>=
-ni<-30
-np<-100000
-##now we're going to simulate data according to this model and examine some key properties
-set.seed(12311)
-##first let's describe the individual level part of the model
-th<-rnorm(np)
-th.mat<-matrix(th,np,ni,byrow=FALSE) #these are the true abilities. we don't observe them, which will be a real problem for us downstream. but we'll not worry about that today. 
-##now the item level part. this is going to look like logistic regression, meaning we will have a slope and an intercept
-a<-1 ##for reasons we'll get into later, let's start with a slope equal to 1
-b<-rnorm(ni)
-b.mat<-matrix(b,np,ni,byrow=TRUE) #these are the item difficulties
-
-################################################################
-##now we have to put this stuff together. what we want is a probability of a correct response for a person to an item
-##we're goign to use what you may know from logistic regression
-inv_logit<-function(x) exp(x)/(1+exp(x))
-##now the probability of a correct response is:
-pr<-inv_logit(a*th.mat+b.mat)
-##we can simulate data using that probability
-##here is the kind of sneaky way i like to do it.
-test<-matrix(runif(ni*np),np,ni)
-resp<-ifelse(pr>test,1,0)
-################################################################
-##we're going to now consider a prototype of an item response model
-##bump up the sample size to a reasonable level before you do this.
-coefs<-list()
-for (i in 1:ncol(resp)) {
-  glm(resp[,i]~th,family="binomial")->mod
-  coef(mod)->coefs[[i]]
-}
-mod
-do.call("rbind",coefs)->coefs
-?density
-##let's consider them separately.
-plot(density(coefs[,2]))
-@
-The plot shows the density of the item discriminations (i.e. the coefficients of the thetas in the equation $\beta_0 + \beta_1 \theta$), which means the density of the items' discrinations. The more the sample size is increased, the closer it appears to a normal distribution with a mean at 1. That means the discriminations are near 1. This makes sense because earlier in the code, we had set
-<<>>=
-a <- 1
-@
-and a is the item discrimination coefficient.
-
-
-\item
-<<results='hide', echo=FALSE>>=
-plot(b,coefs[,1]); abline(0,1)
-@
-This plot shows that the b's are almost the same as the intercepts, which makes sense because it means that the actual item easiness is close to the estimated easiness.
-
-\item
-<<results='hide', echo=FALSE>>=
-sim_data<-function(b, #item difficulties
-                   np=1000,
-                   link=function(x) exp(x)/(1+exp(x))
-)
-{
-  ni<-length(b)
-  th<-rnorm(np)
-  th.mat<-matrix(th,np,ni,byrow=FALSE) 
-  a<-1
-  b.mat<-matrix(b,np,ni,byrow=TRUE) #these are the item difficulties
-  ##now the probability of a correct response is:
-  pr<-link(a*th.mat+b.mat) ##look very carefully here at how b.mat is being included. is this what you expect? if not, take a look at ?mirt (specifically the form used for the Rash itemtype).
-  test<-matrix(runif(ni*np),np,ni)
-  resp<-ifelse(pr>test,1,0)
-  colnames(resp)<-paste("i",1:ncol(resp))
-  resp
-}
-
-
-
-
-##first, the default
-b<-rnorm(50)
-resp<-sim_data(b=b) 
-library(mirt)
-m<-mirt(resp,1,itemtype="Rasch")
-get_coef<-function(mod) {
-  coef(mod)->co
-  co[-length(co)]->co
-  do.call("rbind",co)
-}
-#plot(b,get_coef(m)[,2]); abline(0,1)
-
-##now, the normal
-b<-rnorm(50)
-resp<-sim_data(b=b,link=pnorm) 
-m<-mirt(resp,1,itemtype="Rasch")
-#plot(b,get_coef(m)[,2]); abline(0,1) 
-?mirt
-##something with heavy tails
-b<-rnorm(50)
-resp<-sim_data(b=b,link=function(x) pt(x,df=50)) 
-m<-mirt(resp,1,itemtype="Rasch")
-#plot(b,get_coef(m)[,2]); abline(0,1) 
-
-##skew
-
-library(sn)
-x<-seq(-3,3,length.out=100)
-plot(x,dsn(x,alpha=3),type="l") #note the skew
-plot(x,psn(x,alpha=3),type="l") #corresponding icc
-b<-rnorm(50)
-resp<-sim_data(b=b,link=function(x) dsn(x,alpha=3)) 
-m<-mirt(resp,1,itemtype="Rasch")
-plot(b,get_coef(m)[,2]); abline(0,1) #hm, what is going on here? can we make sense of why parameter estimation is quite bad when b is large
-@
-This is showing that when items get easier, the estimation gets worse and actually predicts that they're harder. 
-
-\end{enumerate}
-
 \section{Different Link Functions}
 \subsection{The Default}
 <<echo=FALSE, message=FALSE, results='hide'>>=
@@ -304,7 +191,6 @@ sim_data<-function(b, #item difficulties
 ##first, the default
 b<-rnorm(50)
 resp<-sim_data(b=b) 
-library(mirt)
 m<-mirt(resp,1,itemtype="Rasch")
 get_coef<-function(mod) {
     coef(mod)->co
@@ -318,6 +204,7 @@ plot(b,get_coef(m)[,2]); abline(0,1)
 
 The default estimates item difficulties (or item easiness, specifically, because mirt) that are in line with the actual (specified) item difficulties.
 
+\pagebreak
 \subsection{The Normal}
 
 <<echo=FALSE, results='hide'>>=
@@ -331,6 +218,7 @@ plot(b,get_coef(m)[,2]); abline(0,1)
 
 Using a normal link function, mirt predicts easy items are easier than they actually are and hard items are harder than they actually are.  The farther an item is from zero, the larger the gap between estimated difficulty and specified difficulty.  The slope of the line here is 1.7, so it is possible to transform between them, but the community tends to prefer the logistic because it is computationally simpler (even if the normal is theoretically nicer).
 
+\pagebreak
 \subsection{Heavy Tails}
 
 <<echo=FALSE, results='hide'>>=
@@ -344,12 +232,12 @@ plot(b,get_coef(m)[,2]); abline(0,1)
 
 Using a link function with heavy tails, mirt does essentially the same as above, just with more divergence farther from zero.
 
+\pagebreak
 \subsection{Skewed}
 
 <<echo=FALSE, message=FALSE, results='hide'>>=
 
 ##skew
-library(sn)
 x<-seq(-3,3,length.out=100)
 plot(x,dsn(x,alpha=3),type="l") #note the skew
 plot(x,psn(x,alpha=3),type="l") #corresponding icc
