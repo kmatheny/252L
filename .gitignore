@@ -3,3 +3,8 @@
 .RData
 .Ruserdata
 /c*/
+ps*/cache/**
+ps*/figure/**
+ps*/*.aux
+ps*/*.log
+ps*/*.tex
