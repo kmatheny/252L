@@ -1,0 +1,16 @@
+\documentclass{article}
+
+\usepackage{lineno}
+
+\linenumbers
+
+\title{Problem Set 3}
+\author{Carrie Kathlyn Townley Flores, Filipe Recch, Kaylee Tuggle Matheny, \\ Klint Kanopka, Kritphong Mongkhonvanit \\ EDUC 252L}
+
+<<echo=FALSE>>=
+knitr::opts_chunk$set(cache=TRUE)
+@
+
+\begin{document}
+	\maketitle
+\end{document}
