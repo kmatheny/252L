@@ -1,0 +1,28 @@
+\documentclass{article}
+
+\usepackage{lineno}
+
+\linenumbers
+
+\title{Problem Set 3}
+\author{Carrie Kathlyn Townley Flores, Filipe Recch, Kaylee Tuggle Matheny, \\ Klint Kanopka, Kritphong Mongkhonvanit \\ EDUC 252L}
+
+<<echo=FALSE>>=
+knitr::opts_chunk$set(cache=TRUE)
+@
+
+\begin{document}
+\maketitle
+
+<<echo=FALSE,fig.height=2.75>>=
+data<-read.table("nde_math_white_space.txt")
+score<-rowSums(data)
+pv<-colMeans(data)
+discrimination<-sapply(1:ncol(data), function(i) cor(score, data[, i], use='p'))
+par(mfrow=c(1,3))
+plot(density(score))
+plot(density(pv), xlim=c(0, 1))
+plot(density(discrimination), xlim=c(0, 1))
+@
+
+\end{document}
