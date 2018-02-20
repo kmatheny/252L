@@ -55,6 +55,21 @@ Sum of information function $ \sum IIF = TIF $
 
 \item For an item response dataset of your choosing, consider the relationship between theta and the SE across the three IRT models for dichotomous items. How much of a difference does the choice of model have on the size of the error estimate?
 
+\section*{Consulting Excercise}
+
+<<echo=FALSE,fig.height=2.75>>=
+data<-read.table("nde_math_white_space.txt")
+score<-rowSums(data)
+pv<-colMeans(data)
+discrimination<-sapply(1:ncol(data), function(i) cor(score, data[, i], use='p')
+)
+par(mfrow=c(1,3))
+plot(density(score))
+plot(density(pv), xlim=c(0, 1))
+plot(density(discrimination), xlim=c(0, 1))
+@
+
+
 \end{enumerate}
 
 \end{document}
