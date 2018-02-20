@@ -30,6 +30,7 @@ plot.fun(resp) #plots item total correlations vs p-values
 #Rasch Model
 mod1<-mirt(resp,1,itemtype="Rasch")
 theta1<-fscores(mod1,method="ML",full.scores=TRUE)
+plot(theta1)
 
 rasch_fit <- itemfit(mod1,fit_stats='infit')
 
@@ -38,16 +39,25 @@ plot(rasch_fit[,2], main='Outfit')
 
 plot(extract.mirt(mod1,'parvec')) #plots estimated item easiness
 
+g1 <- extract.mirt(mod1, 'G2') #extracts "goodness of fit" statistic
+g1
+
 #3PL
 mod2<-mirt(resp,1,itemtype="3PL")
 theta2<-fscores(mod2,method="ML",full.scores=TRUE)
-
-dtheta <- theta2-theta1
-hist(dtheta)
 plot(theta2)
 
+
+#see what difference is made in ability estimates from going rasch to 3pl
+dtheta <- theta2-theta1
+hist(dtheta)
+
+g2 <- extract.mirt(mod2, 'G2') #extracts "goodness of fit" statistic
+g2
+
+#plot estimated item parameters
 matrix(extract.mirt(mod2,'parvec'),ncol=3,byrow=TRUE) -> pars
 plot(pars[,1], main = 'Estimated Item Discrimination')  #this might be easiness
 plot(pars[,2], main = 'Estimated Item Easiness')        #this might be discrimination
-plot(pars[,3], main = 'Estimated Guessing Parameters')  #i don't know why these aren't all between 0 and 1
+plot(pars[,3], main = 'Estimated Guessing Parameters')  #these are 'g' values - check out the mirt documentation to see how they write the model.  more negative means more impact from guessing.
 
