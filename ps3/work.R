@@ -33,9 +33,10 @@ theta1<-fscores(mod1,method="ML",full.scores=TRUE)
 
 rasch_fit <- itemfit(mod1,fit_stats='infit')
 
-hist(rasch_fit[,4], main='Infit')
-hist(rasch_fit[,2], main='Outfit')
+plot(rasch_fit[,4], main='Infit')
+plot(rasch_fit[,2], main='Outfit')
 
+plot(extract.mirt(mod1,'parvec')) #plots estimated item easiness
 
 #3PL
 mod2<-mirt(resp,1,itemtype="3PL")
@@ -45,4 +46,8 @@ dtheta <- theta2-theta1
 hist(dtheta)
 plot(theta2)
 
+matrix(extract.mirt(mod2,'parvec'),ncol=3,byrow=TRUE) -> pars
+plot(pars[,1], main = 'Estimated Item Discrimination')  #this might be easiness
+plot(pars[,2], main = 'Estimated Item Easiness')        #this might be discrimination
+plot(pars[,3], main = 'Estimated Guessing Parameters')  #i don't know why these aren't all between 0 and 1
 
