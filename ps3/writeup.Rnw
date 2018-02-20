@@ -24,7 +24,7 @@ $$ \frac{\epsilon^{\theta - d}}{1+\epsilon^{\theta - d}} $$
 
 Item dif -1: $ \frac{\epsilon^{\theta + 1}}{1+\epsilon^{\theta + 1}} $ \\
 Item dif 0: $ \frac{\epsilon^{\theta - 0}}{1+\epsilon^{\theta - 0}} $ \\
-Item dif 1.5: $ \frac{\epsilon^{\theta + 1.5}}{1+\epsilon^{\theta + 1.5}} $ 
+Item dif 1.5: $ 1 - \frac{\epsilon^{\theta - 1.5}}{1+\epsilon^{\theta - 1.5}} $ 
 
 \item Can you plot this as a function of theta?
 
@@ -32,7 +32,7 @@ Item dif 1.5: $ \frac{\epsilon^{\theta + 1.5}}{1+\epsilon^{\theta + 1.5}} $
 th<-seq(-3,3,length.out=1000)
 p<-function(b) exp(th-b)/(1+exp(th-b))
 
-plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2)) # question 4
+plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2))
 @
 
 \item If theta=0.5, what is the likelihood of that response sequence?
@@ -43,7 +43,7 @@ plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2)) # question 4
 
 <<>>=
 plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2))
-lines(th,p(-1)*(1-p(0))*(1-p(-1.5))) # question 5
+lines(th,p(-1)*(1-p(0))*(1-p(-1.5))) 
 @
 
 
