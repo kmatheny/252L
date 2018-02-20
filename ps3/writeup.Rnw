@@ -51,6 +51,18 @@ lines(th,p(-1)*(1-p(0))*(1-p(-1.5))) # question 5
 
 Sum of information function $ \sum IIF = TIF $
 
+<<>>=
+# derivative of p
+pp <- function(b) {
+	exp(th+b)/(exp(b)+exp(th))^2
+}
+item_info <- function(b) {
+	pp(b)^2/(pp(b)*(1-pp(b)))
+}
+plot(th, item_info(-1)+item_info(0)+item_info(1.5), type="n")
+lines(th, item_info(-1)+item_info(0)+item_info(1.5), lwd=3)
+@
+
 \item Where is the function in \#6 maximized? What do you think this implies? 
 
 \item For an item response dataset of your choosing, consider the relationship between theta and the SE across the three IRT models for dichotomous items. How much of a difference does the choice of model have on the size of the error estimate?
