@@ -32,7 +32,8 @@ Item dif 1.5: $ 1 - \frac{\epsilon^{\theta - 1.5}}{1+\epsilon^{\theta - 1.5}} $
 th<-seq(-3,3,length.out=1000)
 p<-function(b) exp(th-b)/(1+exp(th-b))
 
-plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2))
+plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), type = "n")
+lines(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), lwd = 3)
 @
 
 \item If theta=0.5, what is the likelihood of that response sequence?
@@ -42,8 +43,9 @@ plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2))
 \item At what value of theta does a response sequence of 1-1-0 (that is: they got the first and second items right and the third item wrong) become more likely than a response sequence of 1-0-0?
 
 <<>>=
-plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2))
-lines(th,p(-1)*(1-p(0))*(1-p(-1.5))) 
+plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), type = "n")
+lines(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), lwd = 3)
+lines(th,p(-1)*(1-p(0))*(1-p(-1.5)), lwd = 3 , lty = 2) 
 @
 
 
