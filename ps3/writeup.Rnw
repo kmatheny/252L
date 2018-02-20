@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage{lineno}
+\usepackage{enumitem}
 
 \linenumbers
 
@@ -14,15 +15,46 @@ knitr::opts_chunk$set(cache=TRUE)
 \begin{document}
 \maketitle
 
-<<echo=FALSE,fig.height=2.75>>=
-data<-read.table("nde_math_white_space.txt")
-score<-rowSums(data)
-pv<-colMeans(data)
-discrimination<-sapply(1:ncol(data), function(i) cor(score, data[, i], use='p'))
-par(mfrow=c(1,3))
-plot(density(score))
-plot(density(pv), xlim=c(0, 1))
-plot(density(discrimination), xlim=c(0, 1))
+\section*{Shortish Answer}
+\begin{enumerate}
+
+\item Suppose that we have a test scaled with the Rasch model whose first 3 items have known difficulties -1, 0, and 1.5. An examinee with ability theta got the first item right, the second item right, and the third item wrong. Can you write the likelihood of observing this sequence of item responses as a function of theta?
+
+$$ \frac{\epsilon^{\theta - d}}{1+\epsilon^{\theta - d}} $$ 
+
+Item dif -1: $ \frac{\epsilon^{\theta + 1}}{1+\epsilon^{\theta + 1}} $ \\
+Item dif 0: $ \frac{\epsilon^{\theta - 0}}{1+\epsilon^{\theta - 0}} $ \\
+Item dif 1.5: $ \frac{\epsilon^{\theta + 1.5}}{1+\epsilon^{\theta + 1.5}} $ 
+
+\item Can you plot this as a function of theta?
+
+<<>>=
+th<-seq(-3,3,length.out=1000)
+p<-function(b) exp(th-b)/(1+exp(th-b))
+
+plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2)) # question 4
 @
+
+\item If theta=0.5, what is the likelihood of that response sequence?
+
+\item If theta=0.5, what is the most likely response sequence given the known item difficulties? 
+
+\item At what value of theta does a response sequence of 1-1-0 (that is: they got the first and second items right and the third item wrong) become more likely than a response sequence of 1-0-0?
+
+<<>>=
+plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2))
+lines(th,p(-1)*(1-p(0))*(1-p(-1.5))) # question 5
+@
+
+
+\item Returning to questions 1 and 2, can you plot the "test information" as a function of theta (see Eqn 2-6 in Lord). 
+
+Sum of information function $ \sum IIF = TIF $
+
+\item Where is the function in \#6 maximized? What do you think this implies? 
+
+\item For an item response dataset of your choosing, consider the relationship between theta and the SE across the three IRT models for dichotomous items. How much of a difference does the choice of model have on the size of the error estimate?
+
+\end{enumerate}
 
 \end{document}
