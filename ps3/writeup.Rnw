@@ -1,7 +1,12 @@
 \documentclass{article}
 
+\usepackage{amsmath}
 \usepackage{lineno}
 \usepackage{enumitem}
+\usepackage{float}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 
 \linenumbers
 
@@ -9,7 +14,7 @@
 \author{Carrie Kathlyn Townley Flores, Filipe Recch, Kaylee Tuggle Matheny, \\ Klint Kanopka, Kritphong Mongkhonvanit \\ EDUC 252L}
 
 <<echo=FALSE>>=
-knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_chunk$set(cache=TRUE, echo = FALSE, fig.pos="H",fig.height=4, fig.width=6, fig.align = "center")
 @
 
 \begin{document}
@@ -20,40 +25,62 @@ knitr::opts_chunk$set(cache=TRUE)
 
 \item Suppose that we have a test scaled with the Rasch model whose first 3 items have known difficulties -1, 0, and 1.5. An examinee with ability theta got the first item right, the second item right, and the third item wrong. Can you write the likelihood of observing this sequence of item responses as a function of theta?
 
-$$ \frac{\epsilon^{\theta - d}}{1+\epsilon^{\theta - d}} $$ 
+The likelihood of getting each item right in the Rash model is given by:
 
+$$ \frac{\epsilon^{\theta - b}}{1+\epsilon^{\theta - b}} $$ 
+
+Therefore, each item's likelihood, considering its difficulty is as follows:
 Item dif -1: $ \frac{\epsilon^{\theta + 1}}{1+\epsilon^{\theta + 1}} $ \\
 Item dif 0: $ \frac{\epsilon^{\theta - 0}}{1+\epsilon^{\theta - 0}} $ \\
 Item dif 1.5: $ 1 - \frac{\epsilon^{\theta - 1.5}}{1+\epsilon^{\theta - 1.5}} $ 
 
+The chance of getting the specific sequence is the product of the probabilities of each item in the sequence. Hence, a 1-1-0 sequence has the probability equal to:
+
+$$ \sum \left(\frac{\epsilon^{\theta + 1}}{1+\epsilon^{\theta + 1}}\right) \times \left(\frac{\epsilon^{\theta - 0}}{1+\epsilon^{\theta - 0}} \right) \times \left(1 - \frac{\epsilon^{\theta - 1.5}}{1+\epsilon^{\theta - 1.5}} \right) $$
+
 \item Can you plot this as a function of theta?
 
-<<>>=
+<<graph1, fig.cap="Probabilities as a function of theta">>=
 th<-seq(-3,3,length.out=1000)
 p<-function(b) exp(th-b)/(1+exp(th-b))
 
-plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), type = "n")
-lines(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), lwd = 3)
+plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), type = "n", xlab = expression(theta))
+lines(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), lwd= 3)
 @
 
 \item If theta=0.5, what is the likelihood of that response sequence?
 
+<<echo=TRUE>>=
+th<-0.5
+p<-function(b) exp(th-b)/(1+exp(th-b))
+round(p(-1)*p(0)*(1-p(-1.5)),3)
+@
+
 \item If theta=0.5, what is the most likely response sequence given the known item difficulties? 
+
+The probabilities of getting each item right is \Sexpr{round(p(-1),2)}, \Sexpr{round(p(0),2)} and \Sexpr{round(p(1.5),2)}, respectively for item difficulties of -1, 0, 1.5. Therefore, the most likely sequence is exactly 1-1-0.
 
 \item At what value of theta does a response sequence of 1-1-0 (that is: they got the first and second items right and the third item wrong) become more likely than a response sequence of 1-0-0?
 
-<<>>=
-plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), type = "n")
+<<graph2, fig.cap="Probabilities as a function of theta">>=
+th<-seq(-3,3,length.out=1000)
+plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), type = "n", xlab = expression(theta))
 lines(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), lwd = 3)
-lines(th,p(-1)*(1-p(0))*(1-p(-1.5)), lwd = 3 , lty = 2) 
+lines(th,p(-1)*(1-p(0))*(1-p(-1.5)), lwd = 3, lty = 2)
+abline(v=0)
 @
 
+Considering that the only difference between the two sequeces is either the student got the second item right or wrong and that this specific item has difficulty $b = 0$, then getting 1-1-0 becames more likely at $\theta = 0$.
 
-\item Returning to questions 1 and 2, can you plot the "test information" as a function of theta (see Eqn 2-6 in Lord). 
+\item Returning to questions 1 and 2, can you plot the ``test information" as a function of theta (see Eqn 2-6 in Lord). 
 
-Sum of information function $ \sum IIF = TIF $
+To get the test information we need to sum over the all items information. In order to get the item information, we need to take the derivative with respect to $\theta$ of the probability of getting each item right. The ``test information" is as follows:
 
-<<>>=
+$$ \displaystyle\sum \ddfrac{\left(\ddfrac{\epsilon^{\theta+b}}{\left(\epsilon^{\theta}+\epsilon^{b}\right)^2}\right)^2}{\left(\ddfrac{\epsilon^{\theta-b}}{1+ \epsilon^{\theta-b}}\right) \left(1 - \ddfrac{\epsilon^{\theta-b}}{1 + \epsilon^{\theta-b}}\right)} $$
+
+Using this formula, we get firgure \ref{fig:graph3}.
+
+<<graph3, fig.cap="Test information curve">>=
 # derivative of p
 pp <- function(b) {
 	exp(th+b)/(exp(b)+exp(th))^2
@@ -61,12 +88,19 @@ pp <- function(b) {
 item_info <- function(b) {
 	pp(b)^2/(pp(b)*(1-pp(b)))
 }
+
+plot(th, item_info(-1)+item_info(0)+item_info(1.5), type="n", xlab = expression(theta))
+lines(th, item_info(-1)+item_info(0)+item_info(1.5), lwd=3)
+
 item_info_points <- item_info(-1)+item_info(0)+item_info(1.5)
 plot(th, item_info_points, type="n")
 lines(th, item_info_points, lwd=3)
+
 @
 
 \item Where is the function in \#6 maximized? What do you think this implies? 
+
+As we are dealing with a Rash model, the maximum information will be at the average of the difficulties of the items in the test. In our case, the maximum is at 0.167.
 
 <<>>=
 th[which(item_info_points==max(item_info_points))]
@@ -74,6 +108,7 @@ th[which(item_info_points==max(item_info_points))]
 
 Since the value is very close to zero, it implies that $\theta$ will be
 estimated most precisely when it is close to zero.
+
 
 \item For an item response dataset of your choosing, consider the relationship between theta and the SE across the three IRT models for dichotomous items. How much of a difference does the choice of model have on the size of the error estimate?
 
