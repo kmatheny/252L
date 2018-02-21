@@ -2,7 +2,7 @@
 
 \begin{document}
 A CTT approach would not be a responsible choice for the NDE to use with a high-stakes test. It would be easier and cheaper but much less meaningful. CTT provides nothing more than total scores. With CTT, ability is related only to total score. The only information we can get from a set of test scores is the total score of each of the test-takers, as seen below, based on the data of 1000 test-takers:
-<<results='hide'>>=
+<<echo=FALSE, results='hide'>>=
 resp<-read.table("https://raw.githubusercontent.com/ben-domingue/252L_winter2018/master/data/nde_math_white_space.txt",header=FALSE)
 rowSums(resp)->scoresNDE
 scoresNDE
@@ -128,6 +128,23 @@ tryirt <- irt.fa(resp)
 As you can see, we do not have a lot of information at the low or mid-high ranges, which tells us that we will have higher errors in our scores at these ranges.
 
 This also shows us that we have some items that are so poorly discriminating, they may be worth replacing as they are not contributing greatly to our overall measurement goal.
+
+In the following plot, you can see comparisons of the ability estimates across the three models. Each of the models is almost perfectly correlated with one another. The scatter plots show the relationships among the ability estimates in each of the estimations. For each plot, the x-axis represents the estimate in that column, and the y-axis represents the estimate in that row. You can see that the scores given by the CTT model do not align perfectly with the ability estimates given by the Rasch and 3PL models, and that test-takers given the same sum score in the CTT model are sorted into different but nearly adjacent categories by the Rasch and 3PL models. Judging by the mostly tight scatter in the plot comparing the Rasch and 3PL models, the 3PL model does not change the ability estimates much of any but the lowest scorers from the Rasch model. The Rasch model abilities are slightly skewed, while the 3PL abilties show a more normal curve, which makes sense if some test-takers' abilities were lowered when taking into account guessing.
+<<echo=FALSE, results='hide'>>=
+##Ben's Code for Fancy Plots
+resp<-read.table("https://raw.githubusercontent.com/ben-domingue/252L_winter2018/master/data/nde_math_white_space.txt",header=FALSE)
+
+library(mirt)
+rowSums(resp,na.rm=TRUE)->ctt.est
+#number of factors to extract
+mirt(resp,1)->m1
+fscores(m1)[,1]->rasch.est
+mirt(resp,itemtype="3PL",1)->m1
+fscores(m1)[,1]->three.est
+data.frame(ctt.est,rasch.est,three.est)->df
+library(psych)
+pairs.panels(df,pch='.',gap=0)
+@
 
 
 
