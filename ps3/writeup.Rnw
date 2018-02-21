@@ -78,7 +78,7 @@ To get the test information we need to sum over the all items information. In or
 
 $$ \displaystyle\sum \ddfrac{\left(\ddfrac{\epsilon^{\theta+b}}{\left(\epsilon^{\theta}+\epsilon^{b}\right)^2}\right)^2}{\left(\ddfrac{\epsilon^{\theta-b}}{1+ \epsilon^{\theta-b}}\right) \left(1 - \ddfrac{\epsilon^{\theta-b}}{1 + \epsilon^{\theta-b}}\right)} $$
 
-Using this formula, we get firgure \ref{fig:graph3}.
+Using this formula, we get figure \ref{fig:graph3}.
 
 <<graph3, fig.cap="Test information curve">>=
 # derivative of p
@@ -86,21 +86,18 @@ pp <- function(b) {
 	exp(th+b)/(exp(b)+exp(th))^2
 }
 item_info <- function(b) {
-	pp(b)^2/(pp(b)*(1-pp(b)))
+	pp(b)^2/(p(b)*(1-p(b)))
 }
 
-plot(th, item_info(-1)+item_info(0)+item_info(1.5), type="n", xlab = expression(theta))
-lines(th, item_info(-1)+item_info(0)+item_info(1.5), lwd=3)
-
 item_info_points <- item_info(-1)+item_info(0)+item_info(1.5)
-plot(th, item_info_points, type="n")
+plot(th, item_info_points, type="n", xlab = expression(theta))
 lines(th, item_info_points, lwd=3)
 
 @
 
 \item Where is the function in \#6 maximized? What do you think this implies? 
 
-As we are dealing with a Rash model, the maximum information will be at the average of the difficulties of the items in the test. In our case, the maximum is at 0.167.
+As we are dealing with a Rasch model, the maximum information will be at the average of the difficulties of the items in the test. In our case, the maximum is at 0.167.
 
 <<>>=
 th[which(item_info_points==max(item_info_points))]
