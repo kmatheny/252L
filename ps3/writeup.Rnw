@@ -13,8 +13,10 @@
 \title{Problem Set 3}
 \author{Carrie Kathlyn Townley Flores, Filipe Recch, Kaylee Tuggle Matheny, \\ Klint Kanopka, Kritphong Mongkhonvanit \\ EDUC 252L}
 
-<<echo=FALSE>>=
+<<echo=FALSE,warning=FALSE,message=FALSE,error=FALSE>>=
 knitr::opts_chunk$set(cache=TRUE, echo = FALSE, fig.pos="H",fig.height=4, fig.width=6, fig.align = "center")
+library(mirt)
+library(psych)
 @
 
 \begin{document}
@@ -36,7 +38,7 @@ Item dif 1.5: $ 1 - \frac{\epsilon^{\theta - 1.5}}{1+\epsilon^{\theta - 1.5}} $
 
 The chance of getting the specific sequence is the product of the probabilities of each item in the sequence. Hence, a 1-1-0 sequence has the probability equal to:
 
-$$ \sum \left(\frac{\epsilon^{\theta + 1}}{1+\epsilon^{\theta + 1}}\right) \times \left(\frac{\epsilon^{\theta - 0}}{1+\epsilon^{\theta - 0}} \right) \times \left(1 - \frac{\epsilon^{\theta - 1.5}}{1+\epsilon^{\theta - 1.5}} \right) $$
+$$ \left(\frac{\epsilon^{\theta + 1}}{1+\epsilon^{\theta + 1}}\right) \times \left(\frac{\epsilon^{\theta - 0}}{1+\epsilon^{\theta - 0}} \right) \times \left(1 - \frac{\epsilon^{\theta - 1.5}}{1+\epsilon^{\theta - 1.5}} \right) $$
 
 \item Can you plot this as a function of theta?
 
@@ -44,8 +46,8 @@ $$ \sum \left(\frac{\epsilon^{\theta + 1}}{1+\epsilon^{\theta + 1}}\right) \time
 th<-seq(-3,3,length.out=1000)
 p<-function(b) exp(th-b)/(1+exp(th-b))
 
-plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), type = "n", xlab = expression(theta))
-lines(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), lwd= 3)
+plot(th,p(-1)*p(0)*(1-p(1.5)), ylim = c(0,.4), type = "n", xlab = expression(theta))
+lines(th,p(-1)*p(0)*(1-p(1.5)), ylim = c(0,.4), lwd= 3)
 @
 
 \item If theta=0.5, what is the likelihood of that response sequence?
@@ -53,7 +55,7 @@ lines(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), lwd= 3)
 <<echo=TRUE>>=
 th<-0.5
 p<-function(b) exp(th-b)/(1+exp(th-b))
-round(p(-1)*p(0)*(1-p(-1.5)),3)
+round(p(-1)*p(0)*(1-p(1.5)),3)
 @
 
 \item If theta=0.5, what is the most likely response sequence given the known item difficulties? 
@@ -64,9 +66,9 @@ The probabilities of getting each item right is \Sexpr{round(p(-1),2)}, \Sexpr{r
 
 <<graph2, fig.cap="Probabilities as a function of theta">>=
 th<-seq(-3,3,length.out=1000)
-plot(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), type = "n", xlab = expression(theta))
-lines(th,p(-1)*p(0)*(1-p(-1.5)), ylim = c(0,.2), lwd = 3)
-lines(th,p(-1)*(1-p(0))*(1-p(-1.5)), lwd = 3, lty = 2)
+plot(th,p(-1)*p(0)*(1-p(1.5)), ylim = c(0,.4), type = "n", xlab = expression(theta))
+lines(th,p(-1)*p(0)*(1-p(1.5)), ylim = c(0,.4), lwd = 3)
+lines(th,p(-1)*(1-p(0))*(1-p(1.5)), lwd = 3, lty = 2)
 abline(v=0)
 @
 
@@ -92,7 +94,6 @@ item_info <- function(b) {
 item_info_points <- item_info(-1)+item_info(0)+item_info(1.5)
 plot(th, item_info_points, type="n", xlab = expression(theta))
 lines(th, item_info_points, lwd=3)
-
 @
 
 \item Where is the function in \#6 maximized? What do you think this implies? 
@@ -106,10 +107,27 @@ th[which(item_info_points==max(item_info_points))]
 Since the value is very close to zero, it implies that $\theta$ will be
 estimated most precisely when it is close to zero.
 
-
 \item For an item response dataset of your choosing, consider the relationship between theta and the SE across the three IRT models for dichotomous items. How much of a difference does the choice of model have on the size of the error estimate?
 
 \section*{Consulting Excercise}
+
+
+In the following plot, you can see comparisons of the ability estimates across the three models. Each of the models is almost perfectly correlated with one another. The scatter plots show the relationships among the ability estimates in each of the estimations. For each plot, the x-axis represents the estimate in that column, and the y-axis represents the estimate in that row. You can see that the scores given by the CTT model do not align perfectly with the ability estimates given by the Rasch and 3PL models, and that test-takers given the same sum score in the CTT model are sorted into different but nearly adjacent categories by the Rasch and 3PL models. Judging by the mostly tight scatter in the plot comparing the Rasch and 3PL models, the 3PL model does not change the ability estimates much of any but the lowest scorers from the Rasch model. The Rasch model abilities are slightly skewed, while the 3PL abilties show a more normal curve, which makes sense if some test-takers' abilities were lowered when taking into account guessing.
+
+<<echo=FALSE, results='hide',message=FALSE>>=
+##Ben's Code for Fancy Plots
+resp<-read.table("https://raw.githubusercontent.com/ben-domingue/252L_winter2018/master/data/nde_math_white_space.txt",header=FALSE)
+
+rowSums(resp,na.rm=TRUE)->ctt.est
+#number of factors to extract
+mirt(resp,1)->m1
+fscores(m1)[,1]->rasch.est
+mirt(resp,itemtype="3PL",1)->m1
+fscores(m1)[,1]->three.est
+data.frame(ctt.est,rasch.est,three.est)->df
+pairs.panels(df,pch='.',gap=0)
+@
+
 
 <<echo=FALSE,fig.height=2.75>>=
 data<-read.table("nde_math_white_space.txt")
@@ -122,6 +140,7 @@ plot(density(score))
 plot(density(pv), xlim=c(0, 1))
 plot(density(discrimination), xlim=c(0, 1))
 @
+
 
 
 \end{enumerate}
