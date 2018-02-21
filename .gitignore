@@ -8,3 +8,4 @@ ps*/figure/**
 ps*/*.aux
 ps*/*.log
 ps*/*.tex
+ps*/*.pdf
